@@ -1,130 +1,183 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-
-<head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PokeVault</title>
-
-    <!-- Incluir os links para CSS (pode ter mais arquivos ou arquivos com nomes diferentes) -->
-    <link rel="stylesheet" href="/static/layout.css" />
-    <link rel="stylesheet" href="/static/reset.css">
-
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
-
-    <!-- Google Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
-
-    <link rel="stylesheet" href="/static/reset.css">
-    <!-- script -->
-
-    <script src=""></script>
-
-    <link rel="stylesheet" href="/static/index.css">
-</head>
-
-<body class="home">
-    <!-- HEADER -->
-    <header class="header">
-
-        <!-- TOPO -->
-        <div class="header-top">
-            <button class="btn-login">
-                <span class="material-symbols-outlined">person</span>
-                Entrar
-            </button>
-
-            <img src="/static/img/nome-header.png" class="logo" alt="PokeVault">
-
-            <img src="/static/img/pokebola-header.png" class="pokebola" alt="Pokebola">
-        </div>
-
-        <!-- NAVBAR -->
-        <div class="navbar-wrapper">
-            <nav class="navbar">
-                <ul>
-                    <li class="active">
-                        <span class="material-symbols-outlined">home</span>
-                        Início
-                    </li>
-
-                    <li class="dropdown active-red">
-                        Catálogo
-                        <span class="material-symbols-outlined arrow">expand_more</span>
-                    </li>
-
-                    <li>Pokemon</li>
-                    <li>Itens</li>
-                    <li>Ofertas</li>
-                    <li>Novidades</li>
-                    <li>Sobre nós</li>
-                    <li>Contato</li>
-
-                    <li class="cart">
-                        <span class="material-symbols-outlined">shopping_cart</span>
-
-                    </li>
-                </ul>
-            </nav>
-        </div>
-    </header>
-    <!-- main -->
-     <main>
-
-    <!-- HERO / BANNER -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1>Encontre seu <span>companheiro</span> perfeito!</h1>
-            <p>Criaturas únicas. Laços eternos.</p>
-            <button class="btn-primary">Explorar catálogo</button>
-        </div>
-
-        <div class="hero-image">
-            <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/135.png" alt="Pokemon destaque">
-        </div>
-
-        <!-- Setas -->
-        <button class="hero-arrow left">&#10094;</button>
-        <button class="hero-arrow right">&#10095;</button>
-    </section>
-
-
-    <!-- ANIMAIS EM DESTAQUE -->
-    
-
-</main>
-
-</body>
-
-</html>
 {% extends "layout.html" %}
-
 {% block conteudo %}
 
+    <!-- MAIN -->
+    <main>
 
+        <!-- HERO / BANNER -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Encontre seu <span>companheiro</span> perfeito!</h1>
+                <p>Criaturas únicas. Laços eternos.</p>
+                <button class="btn-primary">Explorar catálogo</button>
+            </div>
 
+            <div class="hero-image">
+                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/135.png"
+                    alt="Pokemon destaque">
+            </div>
 
+            <!-- Setas -->
+            <button class="hero-arrow left">&#10094;</button>
+            <button class="hero-arrow right">&#10095;</button>
+        </section>
 
+        <!-- DESTAQUES -->
+        <section class="destaques">
 
+            <div class="destaque-header">
+                <h2>Pokemon em Destaque</h2>
+                <button class="ver-todos">Ver todos →</button>
+            </div>
 
+            <div class="destaque-grid" id="pokemonDestaque"></div>
 
+            <div class="destaque-header">
+                <h2>Itens e Pokebolas em Destaque</h2>
+                <button class="ver-todos">Ver todos →</button>
+            </div>
 
+            <div class="destaque-grid" id="itensDestaque"></div>
 
+        </section>
 
+    </main>
 
+<script>
+// ============================
+// MAPEAMENTO DE TIPOS
+// ============================
 
+// Tradução EN → PT
+const tipoNomes = {
+  grass: 'Planta',
+  poison: 'Veneno',
+  fire: 'Fogo',
+  water: 'Água',
+  bug: 'Inseto',
+  normal: 'Normal',
+  electric: 'Elétrico',
+  ground: 'Terra',
+  fairy: 'Fada',
+  fighting: 'Lutador',
+  psychic: 'Psíquico',
+  rock: 'Pedra',
+  ghost: 'Fantasma',
+  ice: 'Gelo',
+  dragon: 'Dragão',
+  dark: 'Sombrio',
+  steel: 'Aço',
+  flying: 'Voador'
+};
 
+// Cor de fundo do card por tipo
+const tipoBg = {
+  fire: '#FFDAC1',    
+  water: '#C5E3FF',   
+  grass: '#D4F2D4',   
+  electric: '#FFF5BA',
+  ice: '#E2F5FA',     
+  fighting: '#FAD9D5',
+  poison: '#E6D8F0',  
+  ground: '#F5E6D3',  
+  flying: '#E8F0F8',  
+  psychic: '#FFDDF4', 
+  bug: '#EBF5DF',     
+  rock: '#EAE3D9',    
+  ghost: '#DFD8E8',  
+  dragon: '#D6DBFA',  
+  dark: '#D4D6DB',    
+  steel: '#E2E5E8',   
+  fairy: '#FCE1E4',   
+  normal: '#caada5'   
+};
+// ============================
+// POKÉMONS EM DESTAQUE
+// ============================
 
+const gridPokemon = document.getElementById('pokemonDestaque');
 
+async function carregarPokemons() {
+    // Carrega 12 pokémons (3 linhas de 4)
+    const res = await fetch('https://pokeapi.co/api/v2/pokemon?limit=8');
+    const data = await res.json();
 
+    const detalhes = await Promise.all(
+        data.results.map(p => fetch(p.url).then(r => r.json()))
+    );
 
+    detalhes.forEach(p => {
+        const tipoPrimario = p.types[0].type.name;
+        const bg = tipoBg[tipoPrimario] || '#f5f5f5';
 
+        // Montar texto dos tipos em PT
+        const tiposTexto = p.types
+            .map(t => tipoNomes[t.type.name] || t.type.name)
+            .join(' / ');
 
+        const card = document.createElement('div');
+        card.className = 'card-destaque';
 
+        card.innerHTML = `
+            <div class="img-wrap" style="background:${bg}">
+                <span class="type-badge ${tipoPrimario}">${tipoNomes[tipoPrimario] || tipoPrimario}</span>
+                <button class="btn-fav" onclick="this.classList.toggle('active')">
+                    <span class="material-symbols-outlined">favorite</span>
+                </button>
+                <img src="${p.sprites.other['official-artwork'].front_default}" alt="${p.name}">
+            </div>
+            <div class="card-info">
+                <div class="nome">${p.name}</div>
+                <div class="tipo-texto">${tiposTexto}</div>
+            </div>
+        `;
 
+        gridPokemon.appendChild(card);
+    });
+}
 
+// ============================
+// ITENS EM DESTAQUE
+// ============================
 
+const gridItens = document.getElementById('itensDestaque');
 
+async function carregarItens() {
+    const res = await fetch('https://pokeapi.co/api/v2/item?limit=8');
+    const data = await res.json();
+
+    const detalhes = await Promise.all(
+        data.results.map(i => fetch(i.url).then(r => r.json()))
+    );
+
+    const cores = ['#fff3f0','#eef6ff','#f0fff4','#fff9e6','#f5eeff'];
+
+    detalhes.forEach(item => {
+        const bg = cores[Math.floor(Math.random() * cores.length)];
+
+        const card = document.createElement('div');
+        card.className = 'card-destaque';
+
+        card.innerHTML = `
+            <div class="img-wrap" style="background:${bg}">
+                <span class="type-badge item">Item</span>
+                <button class="btn-fav" onclick="this.classList.toggle('active')">
+                    <span class="material-symbols-outlined">favorite</span>
+                </button>
+                <img src="${item.sprites.default}" alt="${item.name}">
+            </div>
+            <div class="card-info">
+                <div class="nome">${item.name.replace(/-/g, ' ')}</div>
+                <div class="preco">R$ ${(Math.random() * 50 + 10).toFixed(2)}</div>
+            </div>
+        `;
+
+        gridItens.appendChild(card);
+    });
+}
+
+carregarPokemons();
+carregarItens();
+</script>
 
 {% endblock %}

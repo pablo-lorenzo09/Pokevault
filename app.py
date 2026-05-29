@@ -9,7 +9,7 @@ app.secret_key = 'IsoSOsoso'
 @app.route("/")
 @app.route("/inicio")
 def pagina_inicial():
-    return render_template("catalogo.html")
+    return render_template("index.html")
 
 # @app.route("/produto/<int:codigo>")
 # def segunda_pagina(codigo):
