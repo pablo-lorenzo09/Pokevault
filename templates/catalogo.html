@@ -1,7 +1,7 @@
 {% extends "layout.html" %}
 {% block conteudo %}
 <link rel="stylesheet" href="../static/catalogo.css">
- 
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
 <!-- PAGE BODY -->
 <main>
@@ -76,7 +76,26 @@
     </div>
  
     <!-- CARD GRID -->
-    <div class="card-grid" id="cardGrid"></div>
+    <div class="card-grid" id="cardGrid">
+      {% for pokemon in teste: %}
+      <div class="card">
+        <div class="card-img-wrap" style="background:var(--{{pokemon.type1}})">
+            <img src="{{pokemon.image}}" alt="{{pokemon.name}}" loading="lazy">
+            <span class="card-badge" style="background:var(--badge-{{pokemon.type1}})">{{pokemon.type1}}</span>
+            <button class="card-fav" title="Favoritar">
+              <i class="bi bi-cart-plus icone"></i>
+            </button>
+          </div>
+          <div class="card-body">
+            <div class="teste">
+              <div class="card-name">{{pokemon.name}}</div>
+              <div class="card-tipos">{{pokemon.type1}}{% if pokemon.type2 == none :%}{% else %}/{{pokemon.type2}}{% endif %}</div>
+            </div>
+            <div class="card-price">R${{pokemon.price}}</div>
+          </div>
+      </div>
+      {% endfor %}
+    </div>
  
     <!-- PAGINATION -->
     <div class="pagination">
@@ -113,7 +132,10 @@
   </div>
 </div>
 </main>
-<script>
+
+
+
+<!-- <script>
 // Mapa de tradução dos tipos (inglês → português)
 const tipoTraducao = {
   normal: 'Normal',
@@ -180,6 +202,7 @@ const tipoBg = {
   normal: '#f5f5f5'
 };
 
+
 const grid = document.getElementById('cardGrid');
 
 // Mostrar loading
@@ -188,7 +211,7 @@ grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;padding:40px;colo
 // Buscar os primeiros 16 Pokémon
 async function carregarPokemons() {
   try {
-    const resposta = await fetch('https://pokeapi.co/api/v2/pokemon?limit=16');
+    const resposta = await fetch('pokemons.json');
     const dados = await resposta.json();
 
     // Buscar detalhes de cada Pokémon em paralelo
@@ -247,6 +270,6 @@ async function carregarPokemons() {
   }
 }
 
-carregarPokemons();
+carregarPokemons(); -->
 </script>
 {% endblock %}
