@@ -1,3 +1,252 @@
 {% extends "layout.html" %}
-
 {% block conteudo %}
+<link rel="stylesheet" href="../static/catalogo.css">
+ 
+
+<!-- PAGE BODY -->
+<main>
+<div class="page-body">
+  <!-- SIDEBAR -->
+<aside>
+  <div class="sidebar-card">
+    <div class="sidebar-header">
+      <span class="sidebar-title">Filtros</span>
+      <button class="sidebar-clear">Limpar tudo ↺</button>
+    </div>
+
+    <!-- Tipo -->
+    <div class="filter-section-title">
+      Tipo
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
+    </div>
+    <div class="type-grid">
+      <span class="type-tag fogo">Fogo</span>
+      <span class="type-tag agua">Água</span>
+      <span class="type-tag planta">Planta</span>
+      <span class="type-tag eletrico">Elétrico</span>
+      <span class="type-tag psiquico">Psíquico</span>
+      <span class="type-tag gelo">Gelo</span>
+      <span class="type-tag lutador">Lutador</span>
+      <span class="type-tag voo">Voador</span>
+      <span class="type-tag terra">Terra</span>
+      <span class="type-tag veneno">Veneno</span>
+      <span class="type-tag fantasma">Fantasma</span>
+      <span class="type-tag dragao">Dragão</span>
+      <span class="type-tag aco">Aço</span>
+      <span class="type-tag todo">Tudo</span>
+    </div>
+
+    <button class="btn-apply">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
+      Aplicar filtros
+    </button>
+  </div>
+</aside>
+ 
+  <!-- MAIN CONTENT -->
+  <main>
+    <div class="catalog-header">
+      <div>
+        <h1 class="catalog-title">Catálogo de Pokemons</h1>
+        <p class="catalog-subtitle">Encontre seu companheiro perfeito entre centenas de criaturas incríveis!</p>
+      </div>
+      <select class="sort-select">
+        <option>Ordenar</option>
+        <option>Menor preço</option>
+        <option>Maior preço</option>
+      </select>
+    </div>
+ 
+    <div class="toolbar">
+      <span class="results-count">128 criaturas encontradas</span>
+      <div class="search-box">
+        <input type="text" placeholder="Buscar criatura...">
+        <button>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        </button>
+      </div>
+      <div class="view-btns">
+        <button class="view-btn active">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
+        </button>
+        <button class="view-btn">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
+        </button>
+      </div>
+    </div>
+ 
+    <!-- CARD GRID -->
+    <div class="card-grid" id="cardGrid"></div>
+ 
+    <!-- PAGINATION -->
+    <div class="pagination">
+      <button class="page-btn disabled">‹</button>
+      <button class="page-btn">1</button>
+      <button class="page-btn active">2</button>
+      <button class="page-btn">3</button>
+      <button class="page-btn">4</button>
+      <button class="page-btn">5</button>
+      <span style="padding:0 4px;color:#aaa">...</span>
+      <button class="page-btn">11</button>
+      <button class="page-btn">›</button>
+    </div>
+  </main>
+</div>
+ 
+<!-- FOOTER BANNER -->
+<div class="footer-banner">
+  <div class="banner-item">
+    <div class="banner-icon">🛡️</div>
+    <div><strong>Compra segura</strong><span>Seus dados protegidos.</span></div>
+  </div>
+  <div class="banner-item">
+    <div class="banner-icon">🚚</div>
+    <div><strong>Entrega rápida</strong><span>Para todo o mundo.</span></div>
+  </div>
+  <div class="banner-item">
+    <div class="banner-icon">🐾</div>
+    <div><strong>Criaturas 100% únicas</strong><span>Nenhuma igual à outra.</span></div>
+  </div>
+  <div class="banner-item">
+    <div class="banner-icon">⭐</div>
+    <div><strong>Satisfação garantida</strong><span>7 dias para devolução.</span></div>
+  </div>
+</div>
+</main>
+<script>
+// Mapa de tradução dos tipos (inglês → português)
+const tipoTraducao = {
+  normal: 'Normal',
+  fire: 'Fogo',
+  water: 'Água',
+  grass: 'Planta',
+  electric: 'Elétrico',
+  ice: 'Gelo',
+  fighting: 'Lutador',
+  poison: 'Veneno',
+  ground: 'Terra',
+  flying: 'Voador',
+  psychic: 'Psíquico',
+  bug: 'Inseto',
+  rock: 'Pedra',
+  ghost: 'Fantasma',
+  dragon: 'Dragão',
+  dark: 'Sombrio',
+  steel: 'Aço',
+  fairy: 'Fada'
+};
+
+// Mapa de classe CSS para cada tipo
+const tipoBadge = {
+  fire: 'fogo',
+  water: 'agua',
+  grass: 'planta',
+  electric: 'eletrico',
+  ice: 'gelo',
+  fighting: 'lutador',
+  poison: 'veneno',
+  ground: 'terra',
+  flying: 'voo',
+  psychic: 'psiquico',
+  bug: 'planta',
+  rock: 'terra',
+  ghost: 'fantasma',
+  dragon: 'dragao',
+  dark: 'sombrio',
+  steel: 'aco',
+  fairy: 'psiquico',
+  normal: 'todo'
+};
+
+// Cor de fundo do card por tipo
+const tipoBg = {
+  fire: '#fff3f0',
+  water: '#eef6ff',
+  grass: '#f0fff4',
+  electric: '#fff9e6',
+  ice: '#eaf7ff',
+  fighting: '#fff0f0',
+  poison: '#f7f0ff',
+  ground: '#fff7ee',
+  flying: '#f0fbff',
+  psychic: '#f5eeff',
+  bug: '#f0ffe8',
+  rock: '#f5f0e8',
+  ghost: '#f0f0f8',
+  dragon: '#eef2ff',
+  dark: '#f0f0f8',
+  steel: '#f0f0f0',
+  fairy: '#fff0fa',
+  normal: '#f5f5f5'
+};
+
+const grid = document.getElementById('cardGrid');
+
+// Mostrar loading
+grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;padding:40px;color:#999;font-size:16px;">Carregando Pokémon...</p>';
+
+// Buscar os primeiros 16 Pokémon
+async function carregarPokemons() {
+  try {
+    const resposta = await fetch('https://pokeapi.co/api/v2/pokemon?limit=16');
+    const dados = await resposta.json();
+
+    // Buscar detalhes de cada Pokémon em paralelo
+    const detalhes = await Promise.all(
+      dados.results.map(p => fetch(p.url).then(r => r.json()))
+    );
+
+    grid.innerHTML = ''; // Limpar loading
+
+    detalhes.forEach(pokemon => {
+      const tipoPrincipal = pokemon.types[0].type.name;
+      const todosOsTipos = pokemon.types.map(t => tipoTraducao[t.type.name] || t.type.name);
+      const imagem = pokemon.sprites.other['official-artwork'].front_default;
+      const nome = pokemon.name.charAt(0).toUpperCase() + pokemon.name.slice(1);
+      const bg = tipoBg[tipoPrincipal] || '#f5f5f5';
+      const badgeClass = tipoBadge[tipoPrincipal] || 'todo';
+
+      const card = document.createElement('div');
+      card.className = 'card';
+      card.innerHTML = `
+        <div class="card-img-wrap" style="background:${bg}">
+          <img src="${imagem}" alt="${nome}" loading="lazy">
+          <span class="card-badge badge-${badgeClass}">${tipoTraducao[tipoPrincipal]}</span>
+          <button class="card-fav" title="Favoritar">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2">
+              <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+            </svg>
+          </button>
+        </div>
+        <div class="card-body">
+          <div class="card-name">${nome}</div>
+          <div class="card-tipos">${todosOsTipos.join(' / ')}</div>
+        </div>
+      `;
+
+      // Favoritar toggle
+      card.querySelector('.card-fav').addEventListener('click', e => {
+        e.stopPropagation();
+        e.currentTarget.classList.toggle('active');
+        const path = e.currentTarget.querySelector('path');
+        if (e.currentTarget.classList.contains('active')) {
+          path.setAttribute('fill', '#e31e24');
+          path.setAttribute('stroke', '#e31e24');
+        } else {
+          path.setAttribute('fill', 'none');
+          path.setAttribute('stroke', 'currentColor');
+        }
+      });
+
+      grid.appendChild(card);
+    });
+
+  } catch (erro) {
+    grid.innerHTML = '<p style="grid-column:1/-1;text-align:center;padding:40px;color:#e31e24;">Erro ao carregar Pokémon. Tente novamente.</p>';
+    console.error('Erro na PokeAPI:', erro);
+  }
+}
+
+carregarPokemons();
+</script>
+{% endblock %}
