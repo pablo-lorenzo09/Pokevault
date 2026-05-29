@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PokeVault</title>
+
+    <!-- Incluir os links para CSS (pode ter mais arquivos ou arquivos com nomes diferentes) -->
+    <link rel="stylesheet" href="/static/layout.css" />
+    <link rel="stylesheet" href="/static/reset.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+
+    <!-- Google Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+
+    <link rel="stylesheet" href="/static/reset.css">
+    <!-- script -->
+
+    <script src=""></script>
+
+    <!-- {% block css_adicional %}
+    {% endblock %} -->
+</head>
+
+<body>
+    <!-- HEADER -->
+    <header class="header">
+
+        <!-- TOPO -->
+        <div class="header-top">
+            <button class="btn-login">
+                <span class="material-symbols-outlined">person</span>
+                Entrar
+            </button>
+
+            <img src="/static/img/nome-header.png" class="logo" alt="PokeVault">
+
+            <img src="/static/img/pokebola-header.png" class="pokebola" alt="Pokebola">
+        </div>
+
+        <!-- NAVBAR -->
+        <div class="navbar-wrapper">
+            <nav class="navbar">
+                <ul>
+                    <li class="active">
+                        <span class="material-symbols-outlined">home</span>
+                        Início
+                    </li>
+
+                    <li class="dropdown active-red">
+                        Catálogo
+                        <span class="material-symbols-outlined arrow">expand_more</span>
+                    </li>
+
+                    <li>Pokemon</li>
+                    <li>Itens</li>
+                    <li>Ofertas</li>
+                    <li>Novidades</li>
+                    <li>Sobre nós</li>
+                    <li>Contato</li>
+
+                    <li class="cart">
+                        <span class="material-symbols-outlined">shopping_cart</span>
+
+                    </li>
+                </ul>
+            </nav>
+        </div>
+
+
+    </header>
+    <!-- aqui vai o aside do carrinho -->
+    <!-- {% block conteudo %} -->
+    <!-- Aq é onde vai todo o conteúdo do site  -->
+    <!-- {% endblock %} -->
+</body>
+
+</html>
