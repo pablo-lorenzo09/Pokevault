@@ -1,52 +1,11 @@
 {% extends "layout.html" %}
+{% block conteudo %}
 <link rel="stylesheet" href="../static/catalogo.css">
  
-<!-- HEADER -->
-<header>
-  <div class="header-left">
-    <button class="btn-entrar">
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      Entrar
-    </button>
-  </div>
-  <a class="logo" href="#">Poke<span>VAULT</span></a>
-  <div class="pokeball-icon"></div>
-</header>
- 
-<!-- NAV -->
-<nav>
-  <a class="nav-item" href="#">
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
-    Início
-  </a>
-  <a class="nav-item active" href="#">
-    Catálogo
-    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
-  </a>
-  <a class="nav-item" href="#">Pokemons</a>
-  <a class="nav-item" href="#">Itens</a>
-  <a class="nav-item" href="#">Ofertas</a>
-  <a class="nav-item" href="#">Novidades</a>
-  <a class="nav-item" href="#">Sobre nós</a>
-  <a class="nav-item" href="#">Contato</a>
-  <div class="nav-spacer"></div>
-  <button class="cart-btn">
-    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/><line x1="3" y1="6" x2="21" y2="6"/><path d="M16 10a4 4 0 01-8 0"/></svg>
-    <span class="cart-badge">2</span>
-  </button>
-</nav>
- 
-<!-- BREADCRUMB -->
-<div class="breadcrumb">
-  <a href="#">Início</a><span>›</span>
-  <a href="#">Catálogo</a><span>›</span>
-  Pokemons
-</div>
- 
+
 <!-- PAGE BODY -->
+<main>
 <div class="page-body">
- 
-  <!-- SIDEBAR -->
   <!-- SIDEBAR -->
 <aside>
   <div class="sidebar-card">
@@ -92,11 +51,9 @@
         <p class="catalog-subtitle">Encontre seu companheiro perfeito entre centenas de criaturas incríveis!</p>
       </div>
       <select class="sort-select">
-        <option>Ordenar por: Mais populares</option>
+        <option>Ordenar</option>
         <option>Menor preço</option>
         <option>Maior preço</option>
-        <option>Mais recentes</option>
-        <option>Melhor avaliação</option>
       </select>
     </div>
  
@@ -155,7 +112,7 @@
     <div><strong>Satisfação garantida</strong><span>7 dias para devolução.</span></div>
   </div>
 </div>
- 
+</main>
 <script>
 // Mapa de tradução dos tipos (inglês → português)
 const tipoTraducao = {
