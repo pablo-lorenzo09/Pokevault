@@ -31,12 +31,18 @@
 
         <!-- TOPO -->
         <div class="header-top">
-            <button class="btn-login">
-                <span class="material-symbols-outlined">person</span>
-                Entrar
-            </button>
 
-            <img src="/static/img/nome-header.png" class="logo" alt="PokeVault">
+            <a href="/login">
+                <button class="btn-login">
+                    <span class="material-symbols-outlined">person</span>
+                    Entrar
+                </button>
+            </a>
+
+            <a href="/inicio">
+                <img src="/static/img/nome-header.png" class="logo" alt="PokeVault">
+            </a>
+
 
             <img src="/static/img/pokebola-header.png" class="pokebola" alt="Pokebola">
         </div>
@@ -45,15 +51,20 @@
         <div class="navbar-wrapper">
             <nav class="navbar">
                 <ul>
-                    <li class="active">
-                        <span class="material-symbols-outlined">home</span>
-                        Início
-                    </li>
+                    <a href="/inicio">
+                        <li class="active">
+                            <span class="material-symbols-outlined">home</span>
+                            Início
+                        </li>
+                    </a>
 
-                    <li class="dropdown active-red">
-                        Catálogo
-                        <span class="material-symbols-outlined arrow">expand_more</span>
-                    </li>
+                    <a href="/catalogo">
+                        <li class="dropdown active-red">
+                            Catálogo
+                            <span class="material-symbols-outlined arrow">expand_more</span>
+                        </li>
+                    </a>
+
 
                     <li>Pokemon</li>
                     <li>Itens</li>
@@ -76,24 +87,24 @@
 
     {% endblock %}
     <!-- FOOTER BANNER -->
-<footer class="footer-banner">
-  <div class="banner-item">
-    <div class="banner-icon">🛡️</div>
-    <div><strong>Compra segura</strong><span>Seus dados protegidos.</span></div>
-  </div>
-  <div class="banner-item">
-    <div class="banner-icon">🚚</div>
-    <div><strong>Entrega rápida</strong><span>Para todo o mundo.</span></div>
-  </div>
-  <div class="banner-item">
-    <div class="banner-icon">🐾</div>
-    <div><strong>Criaturas 100% únicas</strong><span>Nenhuma igual à outra.</span></div>
-  </div>
-  <div class="banner-item">
-    <div class="banner-icon">⭐</div>
-    <div><strong>Satisfação garantida</strong><span>7 dias para devolução.</span></div>
-  </div>
-</footer>
+    <footer class="footer-banner">
+        <div class="banner-item">
+            <div class="banner-icon">🛡️</div>
+            <div><strong>Compra segura</strong><span>Seus dados protegidos.</span></div>
+        </div>
+        <div class="banner-item">
+            <div class="banner-icon">🚚</div>
+            <div><strong>Entrega rápida</strong><span>Para todo o mundo.</span></div>
+        </div>
+        <div class="banner-item">
+            <div class="banner-icon">🐾</div>
+            <div><strong>Criaturas 100% únicas</strong><span>Nenhuma igual à outra.</span></div>
+        </div>
+        <div class="banner-item">
+            <div class="banner-icon">⭐</div>
+            <div><strong>Satisfação garantida</strong><span>7 dias para devolução.</span></div>
+        </div>
+    </footer>
 
 </body>
 
