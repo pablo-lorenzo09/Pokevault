@@ -1,32 +1,135 @@
-*{
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+
+/* MAIN */
+.container {
+  display: flex;
+  gap: 40px;
+  padding: 40px;
+  margin: 30px 300px;
 }
 
-.section_infos{
-    width: 100vw;
-    display: flex;
-    flex-direction: row;
-    height: 80vh;
-    padding: 50px;
+/* GALERIA */
+.gallery {
+  width: 50%;
 }
 
-.container_img{
-    width: 50%;
-    height: 100%;
+.main-image {
+  background: white;
+  padding: 20px;
+  border-radius: 20px;
 }
 
-.container_img img{
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
+.main-image img {
+  width: 100%;
 }
 
-.container_info{
-    width: 50%;
-    padding: 50px;
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
+.thumbs {
+  display: flex;
+  gap: 10px;
+  margin-top: 15px;
+}
+
+.thumbs img {
+  width: 70px;
+  background: white;
+  padding: 5px;
+  border-radius: 10px;
+}
+
+/* INFO */
+.info {
+  width: 50%;
+}
+
+.tag {
+  background: #ffd166;
+  padding: 5px 10px;
+  border-radius: 10px;
+}
+
+.info h2 {
+  font-size: 32px;
+  margin: 10px 0;
+}
+
+.desc {
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.stats {
+  background: #f1f1f1;
+  padding: 15px;
+  border-radius: 15px;
+  margin-bottom: 20px;
+}
+
+.attacks ul {
+  list-style: none;
+}
+
+.attacks li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+
+/* COMPRA */
+.buy {
+  margin-top: 20px;
+}
+
+.buy h3 {
+  color: red;
+  font-size: 24px;
+}
+
+.actions {
+  display: flex;
+  gap: 10px;
+  margin: 10px 0;
+}
+
+.actions button {
+  padding: 5px 10px;
+}
+
+.buy-btn {
+  background: red;
+  color: white;
+  border: none;
+  padding: 12px;
+  width: 100%;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+/* REVIEWS */
+.reviews {
+  display: flex;
+  gap: 40px;
+  padding: 40px;
+}
+
+.score h2 {
+  font-size: 40px;
+}
+
+.review-list {
+  flex: 1;
+}
+
+.review {
+  background: white;
+  padding: 15px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* FOOTER */
+.footer {
+  display: flex;
+  justify-content: space-around;
+  background: #1f2937;
+  color: white;
+  padding: 20px;
 }
