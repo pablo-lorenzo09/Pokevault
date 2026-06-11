@@ -14,44 +14,44 @@
   --price: #e31e24;
   --sidebar-w: 260px;
 
-  --Fire: #FFDAC1;
-  --Water: #C5E3FF;
-  --Grass: #D4F2D4;
-  --Electric: #FFF5BA;
-  --Ice: #E2F5FA;
-  --Fighting: #FAD9D5;
-  --Poison: #E6D8F0;
-  --Ground: #F5E6D3;
-  --Flying: #E8F0F8;
-  --Psychic: #FFDDF4;
-  --Bug: #EBF5DF;
-  --Rock: #EAE3D9;
-  --Ghost: #DFD8E8;
-  --Dragon: #D6DBFA;
-  --Dark: #D4D6DB;
-  --Steel: #E2E5E8;
-  --Fairy: #FCE1E4;
-  --Normal: #caada5;
+--Fogo: #FFDAC1;
+--Água: #C5E3FF;
+--Planta: #D4F2D4;
+--Elétrico: #FFF5BA;
+--Gelo: #E2F5FA;
+--Lutador: #FAD9D5;
+--Veneno: #E6D8F0;
+--Terra: #F5E6D3;
+--Voador: #E8F0F8;
+--Psíquico: #FFDDF4;
+--Inseto: #EBF5DF;
+--Pedra: #EAE3D9;
+--Fantasma: #DFD8E8;
+--Dragão: #D6DBFA;
+--Sombrio: #D4D6DB;
+--Aço: #E2E5E8;
+--Fada: #FCE1E4;
+--Normal: #caada5;
 
-  --badge-Fire: #e67e22;
-  --badge-Water: #2980b9;
-  --badge-Grass: #27ae60;
-  --badge-Electric: #f39c12;
-  --badge-Ice: #76b4d8;
-  --badge-Fighting: #ff1900;
-  --badge-Poison: #7d3c98;
-  --badge-Ground: #a0522d;
-  --badge-Flying: #55bdca;
-  --badge-Psychic: #8e44ad;
-  --badge-Bug: #00722f;
-  --badge-Rock: #996750;
-  --badge-Ghost: #4a235a;
-  --badge-Dragon: #154360;
-  --badge-Dark: #2c3e50;
-  --badge-Steel: #85929e;
-  --badge-Fairy: #ff62cb;
-  --badge-Normal: #aaa;
-}badge-
+--badge-Fogo: #e67e22;
+--badge-Água: #2980b9;
+--badge-Planta: #27ae60;
+--badge-Elétrico: #f39c12;
+--badge-Gelo: #76b4d8;
+--badge-Lutador: #ff1900;
+--badge-Veneno: #7d3c98;
+--badge-Terra: #a0522d;
+--badge-Voador: #55bdca;
+--badge-Psíquico: #8e44ad;
+--badge-Inseto: #00722f;
+--badge-Pedra: #996750;
+--badge-Fantasma: #4a235a;
+--badge-Dragão: #154360;
+--badge-Sombrio: #2c3e50;
+--badge-Aço: #85929e;
+--badge-Fada: #ff62cb;
+--badge-Normal: #aaa;
+}
 
 /* ───── BREADCRUMB ───── */
 .breadcrumb {
