@@ -58,7 +58,7 @@
     </div>
  
     <div class="toolbar">
-      <span class="results-count">128 criaturas encontradas</span>
+      <span class="results-count">386 criaturas encontradas</span>
       <div class="search-box">
         <input type="text" placeholder="Buscar criatura...">
         <button>
@@ -77,7 +77,7 @@
  
     <!-- CARD GRID -->
     <div class="card-grid" id="cardGrid">
-      {% for pokemon in teste: %}
+      {% for pokemon in pokemons: %}
       <div class="card">
         <div class="card-img-wrap" style="background:var(--{{pokemon.type1}})">
             <img src="{{pokemon.image}}" alt="{{pokemon.name}}" loading="lazy">
@@ -99,7 +99,25 @@
  
     <!-- PAGINATION -->
     <div class="pagination">
+      <button class="page-btn disabled">‹</button>
+      <a href="/"><button class="page-btn">1</button></a>
+      <a href="/inicio/2"><button class="page-btn">2</button></a>
+      <a href="/inicio/3"><button class="page-btn">3</button></a>
+      <a href="/inicio/4"><button class="page-btn">4</button></a>
+      <a href="/inicio/5"><button class="page-btn">5</button></a>
+      <a href="/inicio/6"><button class="page-btn">6</button></a>
+      <a href="/inicio/7"><button class="page-btn">7</button></a>
+      <a href="/inicio/8"><button class="page-btn">8</button></a>
+      <a href="/inicio/9"><button class="page-btn">9</button></a>
+      <a href="/inicio/10"><button class="page-btn">10</button></a>
+      <a href="/inicio/11"><button class="page-btn">11</button></a>
+      <a href="/inicio/12"><button class="page-btn">12</button></a>
+      <a href="/inicio/13"><button class="page-btn">13</button></a>
+
+      <button class="page-btn disabled">›</button>
     </div>
+  </main>
+</div>
  
 
 </main>

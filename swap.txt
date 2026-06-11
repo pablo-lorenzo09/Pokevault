@@ -1,2 +1,0 @@
-fazer rotas 
-talvez fazer a pagina de cadatro com api nos inputs de endereço
