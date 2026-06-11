@@ -2,6 +2,16 @@ from flask import Flask, render_template, request, redirect, session, jsonify
 # from models.itens import recuperar_produtos, recuperar_produtos_destaques,recuperar_produto
 # from models.pokemon import cadastrar_usuarios
 # from models.usuario import pegar_login
+
+import json
+
+# Abrir arquivo JSON
+with open("pokemons.json", "r", encoding="utf-8") as arquivo:
+    dados = json.load(arquivo)
+
+# Transformar em lista
+lista = list(dados)
+
 app = Flask(__name__)
 
 app.secret_key = 'IsoSOsoso'

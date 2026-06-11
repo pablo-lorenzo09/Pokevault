@@ -13,7 +13,45 @@
   --white: #fff;
   --price: #e31e24;
   --sidebar-w: 260px;
-}
+
+  --Fire: #FFDAC1;
+  --Water: #C5E3FF;
+  --Grass: #D4F2D4;
+  --Electric: #FFF5BA;
+  --Ice: #E2F5FA;
+  --Fighting: #FAD9D5;
+  --Poison: #E6D8F0;
+  --Ground: #F5E6D3;
+  --Flying: #E8F0F8;
+  --Psychic: #FFDDF4;
+  --Bug: #EBF5DF;
+  --Rock: #EAE3D9;
+  --Ghost: #DFD8E8;
+  --Dragon: #D6DBFA;
+  --Dark: #D4D6DB;
+  --Steel: #E2E5E8;
+  --Fairy: #FCE1E4;
+  --Normal: #caada5;
+
+  --badge-Fire: #e67e22;
+  --badge-Water: #2980b9;
+  --badge-Grass: #27ae60;
+  --badge-Electric: #f39c12;
+  --badge-Ice: #76b4d8;
+  --badge-Fighting: #ff1900;
+  --badge-Poison: #7d3c98;
+  --badge-Ground: #a0522d;
+  --badge-Flying: #55bdca;
+  --badge-Psychic: #8e44ad;
+  --badge-Bug: #00722f;
+  --badge-Rock: #996750;
+  --badge-Ghost: #4a235a;
+  --badge-Dragon: #154360;
+  --badge-Dark: #2c3e50;
+  --badge-Steel: #85929e;
+  --badge-Fairy: #ff62cb;
+  --badge-Normal: #aaa;
+}badge-
 
 /* ───── BREADCRUMB ───── */
 .breadcrumb {
@@ -238,8 +276,9 @@ main { flex: 1; min-width: 0; }
   position: relative;
   aspect-ratio: 1;
   overflow: hidden;
-  background: linear-gradient(135deg, #f0f4ff 0%, #e8f5e9 100%);
+  background:white;
 }
+
 .card-img-wrap img {
   width: 100%; height: 100%;
   object-fit: cover;
@@ -258,36 +297,60 @@ main { flex: 1; min-width: 0; }
   text-transform: uppercase;
   letter-spacing: .4px;
 }
-.badge-fogo    { background: #e74c3c; }
-.badge-agua    { background: #2980b9; }
-.badge-planta  { background: #27ae60; }
-.badge-eletrico{ background: #f39c12; }
-.badge-psiquico{ background: #8e44ad; }
-.badge-gelo    { background: #76b4d8; }
-.badge-normal  { background: #aaa; }
-.badge-terra   { background: #a0522d; }
-.badge-veneno  { background: #7d3c98; }
-.badge-fantasma{ background: #4a235a; }
+.badge-Fogo    { background: #e67e22; }
+.badge-Agua    { background: #2980b9; }
+.badge-Planta  { background: #27ae60; }
+.badge-Eletrico{ background: #f39c12; }
+.badge-Psiquico{ background: #8e44ad; }
+.badge-Gelo    { background: #76b4d8; }
+.badge-Normal  { background: #aaa; }
+.badge-Terra   { background: #a0522d; }
+.badge-Veneno  { background: #7d3c98; }
+.badge-Fantasma{ background: #4a235a; }
 .badge-sombrio { background: #2c3e50; }
 .badge-dragao  { background: #154360; }
 .badge-aco     { background: #85929e; }
-.badge-novidade{ background: #e74c3c; }
-.badge-venda   { background: #e67e22; }
+.badge-lutador{ background: #ff1900; }
+.badge-voador   { background: #55bdca; }
+.badge-inseto  {background:  #00722f ;}
+.badge-pedra {background: #996750 ;}
+.badge-fada {background: #ff62cb ;}
+
+.icone{
+  font-size: 20px;
+  color: rgb(143, 143, 143);
+  transition: 0.3s;
+}
+
+.icone:hover{
+  color: red;
+}
 
 .card-fav {
   position: absolute;
   top: 7px; right: 7px;
   background: rgba(255,255,255,.85);
   border-radius: 50%;
-  width: 30px; height: 30px;
   display: flex; align-items: center; justify-content: center;
   border: none; cursor: pointer;
   color: #ccc;
   transition: color .15s;
+  padding: 5px 6px;
 }
 .card-fav:hover, .card-fav.active { color: var(--red); }
+.card-price{
+  background-color: rgb(236, 236, 236);
+  padding: 5px;
+  border-radius: 10px;
+}
 
-.card-body { padding: 10px 12px 12px; }
+.card-body { 
+  padding: 10px 12px 12px; 
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+
+}
 
 .card-name { font-weight: 900; font-size: 16px; margin-bottom: 4px; }
 
@@ -356,4 +419,8 @@ main { flex: 1; min-width: 0; }
   width: 100%; height: 100%;
   display: flex; align-items: center; justify-content: center;
   font-size: 48px;
+}
+
+.card-img-wrap{
+  background-color: white;
 }
