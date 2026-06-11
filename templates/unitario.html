@@ -2,164 +2,171 @@
 <html lang="pt-br">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>PokeVault</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PokeVault</title>
 
-    <!-- Incluir os links para CSS (pode ter mais arquivos ou arquivos com nomes diferentes) -->
-    <link rel="stylesheet" href="/static/layout.css" />
-    <link rel="stylesheet" href="/static/reset.css">
-    <link rel="stylesheet" href="/static/index.css">
-    <link rel="stylesheet" href="/static/unitario.css">
-    <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
+  <!-- Incluir os links para CSS (pode ter mais arquivos ou arquivos com nomes diferentes) -->
+  <link rel="stylesheet" href="/static/layout.css" />
+  <link rel="stylesheet" href="/static/reset.css">
+  <link rel="stylesheet" href="/static/index.css">
+  <link rel="stylesheet" href="/static/unitario.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
 
-    <!-- Google Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+  <!-- Google Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 
-    <link rel="stylesheet" href="/static/reset.css">
-    <!-- script -->
+  <link rel="stylesheet" href="/static/reset.css">
+  <!-- script -->
 
-    <script src=""></script>
+  <script src=""></script>
 </head>
 
 <body>
 
-<body>
+  <body>
     <!-- HEADER -->
     <header class="header">
 
-        <!-- TOPO -->
-        <div class="header-top">
+      <!-- TOPO -->
+      <div class="header-top">
 
-            <a href="/login">
-                <button class="btn-login">
-                    <span class="material-symbols-outlined">person</span>
-                    Entrar
-                </button>
-            </a>
+        <a href="/login">
+          <button class="btn-login">
+            <span class="material-symbols-outlined">person</span>
+            Entrar
+          </button>
+        </a>
 
+        <a href="/inicio">
+          <img src="/static/img/nome-header.png" class="logo" alt="PokeVault">
+        </a>
+
+
+        <img src="/static/img/pokebola-header.png" class="pokebola" alt="Pokebola">
+      </div>
+
+      <!-- NAVBAR -->
+      <div class="navbar-wrapper">
+        <nav class="navbar">
+          <ul>
             <a href="/inicio">
-                <img src="/static/img/nome-header.png" class="logo" alt="PokeVault">
+              <li class="active">
+                <span class="material-symbols-outlined">home</span>
+                Início
+              </li>
+            </a>
+
+            <a href="/catalogo">
+              <li class="dropdown active-red">
+                Catálogo
+                <span class="material-symbols-outlined arrow">expand_more</span>
+              </li>
             </a>
 
 
-            <img src="/static/img/pokebola-header.png" class="pokebola" alt="Pokebola">
-        </div>
+            <li>Pokemon</li>
+            <li>Itens</li>
+            <li>Ofertas</li>
+            <li>Novidades</li>
+            <li>Sobre nós</li>
+            <li>Contato</li>
 
-        <!-- NAVBAR -->
-        <div class="navbar-wrapper">
-            <nav class="navbar">
-                <ul>
-                    <a href="/inicio">
-                        <li class="active">
-                            <span class="material-symbols-outlined">home</span>
-                            Início
-                        </li>
-                    </a>
+            <li class="cart">
+              <span class="material-symbols-outlined">shopping_cart</span>
 
-                    <a href="/catalogo">
-                        <li class="dropdown active-red">
-                            Catálogo
-                            <span class="material-symbols-outlined arrow">expand_more</span>
-                        </li>
-                    </a>
-
-
-                    <li>Pokemon</li>
-                    <li>Itens</li>
-                    <li>Ofertas</li>
-                    <li>Novidades</li>
-                    <li>Sobre nós</li>
-                    <li>Contato</li>
-
-                    <li class="cart">
-                        <span class="material-symbols-outlined">shopping_cart</span>
-
-                    </li>
-                </ul>
-            </nav>
-        </div>
+            </li>
+          </ul>
+        </nav>
+      </div>
 
 
     </header>
 
-<!-- MAIN -->
-<main class="container">
+    <!-- MAIN -->
+    <main class="container">
 
-  <!-- LEFT (IMAGEM) -->
-  <section class="gallery">
-    <div class="main-image">
-      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/135.png">
-    </div>
+      <!-- LEFT (IMAGEM) -->
+      <section class="gallery">
+        <div class="main-image">
+          <img
+            src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/135.png">
+        </div>
 
-    <div class="thumbs">
-      <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/135.png">
+        <div class="thumbs">
+          <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/135.png">
 
-    </div>
-  </section>
+        </div>
+      </section>
 
-  <!-- RIGHT (INFO) -->
-  <section class="info">
-    <span class="tag">Elétrico</span>
-    <h2>Voltynx</h2>
+      <!-- RIGHT (INFO) -->
+      <section class="info">
+        <span class="tag">Elétrico</span>
+        <h2>Voltynx</h2>
 
-    <p class="desc">
-      Um companheiro cheio de energia! Voltynx armazena eletricidade estática em seu pelo e libera em alta velocidade.
-    </p>
+        <p class="desc">
+          Um companheiro cheio de energia! Voltynx armazena eletricidade estática em seu pelo e libera em alta
+          velocidade.
+        </p>
 
 
-    <div class="attacks">
-      <h4>Ataques</h4>
-      <ul>
-        <li>Faísca Rápida <span class="tag">Elétrico</span></li>
-        <li>Investida de Raios <span class="tag">Elétrico</span></li>
-        <li>Carga Estática <span class="tag">Elétrico</span></li>
-        <li>Trovão Furioso <span class="tag">Elétrico</span></li>
-      </ul>
-    </div>
+        <div class="attacks">
+          <h4 style="margin-bottom: 15px;">Ataques</h4>
+          <ul>
+            <li>Faísca Rápida <span class="tag">Elétrico</span></li>
+            <li>Investida de Raios <span class="tag">Elétrico</span></li>
+            <li>Carga Estática <span class="tag">Elétrico</span></li>
+            <li>Trovão Furioso <span class="tag">Elétrico</span></li>
+          </ul>
+        </div>
 
-    <div class="buy">
-      <h3>R$ 139,90</h3>
+        <div class="buy-wrapper">
+          <div class="buy">
+            <h3>R$ 139,90</h3>
+            <div class="in-stock">Em estoque</div>
+            <div class="buy-row">
+              <div class="actions">
+                <button>−</button>
+                <span>1</span>
+                <button>+</button>
+              </div>
+              <button class="buy-btn">🛒 Comprar agora</button>
+            </div>
+            <div class="secure">🛡 Compra segura e protegida pela PokeVault</div>
+          </div>
+        </div>
+      </section>
 
-      <div class="actions">
-        <button>-</button>
-        <span>1</span>
-        <button>+</button>
+    </main>
+
+    <!-- AVALIAÇÕES -->
+    <section class="reviews">
+
+      <div class="score">
+        <h2>4.9</h2>
+        <p>baseado em 128 avaliações</p>
       </div>
 
-      <button class="buy-btn">Comprar agora</button>
-    </div>
-  </section>
+      <div class="review-list">
+        <div class="review">
+          <h4>Treinador Lucas</h4>
+          <p>Super rápido e poderoso!</p>
+        </div>
 
-</main>
+        <div class="review">
+          <h4>Mestre Elétrico</h4>
+          <p>Um dos melhores companheiros!</p>
+        </div>
 
-<!-- AVALIAÇÕES -->
-<section class="reviews">
+        <div class="review">
+          <h4>Nina Volt</h4>
+          <p>Perfeito em batalha!</p>
+        </div>
+      </div>
 
-  <div class="score">
-    <h2>4.9</h2>
-    <p>baseado em 128 avaliações</p>
-  </div>
+    </section>
 
-  <div class="review-list">
-    <div class="review">
-      <h4>Treinador Lucas</h4>
-      <p>Super rápido e poderoso!</p>
-    </div>
+  </body>
 
-    <div class="review">
-      <h4>Mestre Elétrico</h4>
-      <p>Um dos melhores companheiros!</p>
-    </div>
-
-    <div class="review">
-      <h4>Nina Volt</h4>
-      <p>Perfeito em batalha!</p>
-    </div>
-  </div>
-
-</section>
-
-</body>
 </html>
