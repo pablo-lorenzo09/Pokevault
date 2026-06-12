@@ -63,19 +63,20 @@ def tela_cadastro_post():
 
 @app.route("/catalogo/<pag>")
 def pagina_catalogo(pag=0):
-    tipo_filtro = request.args.get("tipo")
-    pokemons = recuperar_pokemons(pag=pag, tipo=tipo_filtro)
+    tipos_filtro = request.args.getlist("tipo")
+    pokemons = recuperar_pokemons(pag=pag, tipos=tipos_filtro)
     tipos = recuperar_tipos()
     return render_template(
         "catalogo.html",
         pokemons=pokemons,
         tipos=tipos,
-        tipo_selecionado=tipo_filtro
+        tipos_selecionados=tipos_filtro
     )
 @app.route("/unitario/<id>")
 def pagina_unitario(id):
     pokemon = recuperar_pokemon_unitario(id)
     return render_template("unitario.html",pokemon = pokemon)
+
 
 
 

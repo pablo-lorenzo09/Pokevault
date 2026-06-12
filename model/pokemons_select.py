@@ -1,6 +1,6 @@
 from database.conexao import conectar
 
-def recuperar_pokemons(pag: int = 0, tipo: str = None):
+def recuperar_pokemons(pag: int = 0, tipos: list = None):
     conexao,cursor = conectar()
     offset= 30 * int(pag)
     if offset > 0:
@@ -65,17 +65,18 @@ def recuperar_pokemons(pag: int = 0, tipo: str = None):
 
     params = []
 
-    # Filtro opcional por tipo de pokemon
-    if tipo:
-        base_query += """
+    # Filtro opcional por tipos de pokemon (agora aceita lista)
+    if tipos:
+        placeholders = ','.join(['%s'] * len(tipos))
+        base_query += f"""
     WHERE p.id_pokemon IN (
         SELECT pt2.id_pokemon
         FROM Pokemons_tipos pt2
         JOIN tipos t2 ON pt2.id_tipo = t2.id_tipo
-        WHERE t2.tipo = %s
+        WHERE t2.tipo IN ({placeholders})
     )
         """
-        params.append(tipo)
+        params.extend(tipos)
 
     base_query += """
     GROUP BY
@@ -99,7 +100,6 @@ def recuperar_pokemons(pag: int = 0, tipo: str = None):
     conexao.close()
 
     return pokemons
-
 
 def recuperar_pokemon_unitario(id):
     conexao,cursor = conectar()
