@@ -3,7 +3,7 @@
 
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;900&family=Bangers&display=swap');
-  
+
   .pv-card {
     background: white;
     border-radius: 20px;
@@ -24,14 +24,14 @@
     font-size: 38px;
     letter-spacing: 2px;
     color: #cc0000;
-    text-shadow: 3px 3px 0 #ffcb05, 4px 4px 0 rgba(0,0,0,0.1);
+    text-shadow: 3px 3px 0 #ffcb05, 4px 4px 0 rgba(0, 0, 0, 0.1);
     line-height: 1;
     margin-bottom: 4px;
   }
 
   .pv-logo span {
     color: #ffcb05;
-    text-shadow: 3px 3px 0 #e0a900, 4px 4px 0 rgba(0,0,0,0.1);
+    text-shadow: 3px 3px 0 #e0a900, 4px 4px 0 rgba(0, 0, 0, 0.1);
   }
 
   .pv-subtitle {
@@ -46,8 +46,18 @@
     gap: 10px;
     margin-bottom: 1.5rem;
   }
-  .pv-divider-line { flex: 1; height: 1px; background: #eee; }
-  .pv-divider-text { font-size: 12px; color: #bbb; font-weight: 600; }
+
+  .pv-divider-line {
+    flex: 1;
+    height: 1px;
+    background: #eee;
+  }
+
+  .pv-divider-text {
+    font-size: 12px;
+    color: #bbb;
+    font-weight: 600;
+  }
 
   .pv-pokeball-icon {
     width: 56px;
@@ -84,6 +94,7 @@
     background: #fafafa;
     outline: none;
   }
+
   .pv-input:focus {
     border-color: #cc0000;
     background: white;
@@ -94,6 +105,7 @@
     margin-top: -6px;
     margin-bottom: 1.25rem;
   }
+
   .pv-forgot a {
     font-size: 12px;
     color: #cc0000;
@@ -115,8 +127,14 @@
     cursor: pointer;
     transition: background 0.15s, transform 0.1s;
   }
-  .pv-btn:hover { background: #aa0000; }
-  .pv-btn:active { transform: scale(0.98); }
+
+  .pv-btn:hover {
+    background: #aa0000;
+  }
+
+  .pv-btn:active {
+    transform: scale(0.98);
+  }
 
   .pv-register {
     text-align: center;
@@ -125,6 +143,7 @@
     color: #888;
     font-weight: 600;
   }
+
   .pv-register a {
     color: #cc0000;
     font-weight: 700;
@@ -142,30 +161,34 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height:74vh;
+    height: 74vh;
   }
 </style>
 
 <div class="pv-root">
 
   <div class="pv-card">
-    <div class="pv-header">
-      <img class="poke-bola" src="/static/img/pokebola-header.png" alt=""><br>
-      <div class="pv-subtitle">Entre na sua conta de treinador</div>
-    </div>
+    <form method="post" action="/login/post">
+      <div class="pv-header">
+        <img class="poke-bola" src="/static/img/pokebola-header.png" alt=""><br>
+        <div class="pv-subtitle">Entre na sua conta de treinador</div>
+      </div>
 
-    <div class="pv-field">
-      <label class="pv-label">E-mail</label>
-      <input class="pv-input" type="email" placeholder="seu@email.com" />
-    </div>
+      <div class="pv-field">
+        <label class="pv-label">E-mail</label>
+        <input class="pv-input" id="email" name="email" type="email" placeholder="seu@email.com" />
+      </div>
 
-    <div class="pv-field">
-      <label class="pv-label">Senha</label>
-      <input class="pv-input" type="password" placeholder="••••••••" />
-    </div>
+      <div class="pv-field">
+        <label class="pv-label">Senha</label>
+        <input class="pv-input" id="senha" name="senha" type="password" placeholder="••••••••" />
+      </div>
 
-    <button class="pv-btn">ENTRAR</button>
-    
+
+      <button class="pv-btn">ENTRAR</button>
+    </form>
+
+
     <div class="pv-register">
       Novo treinador? <a href="/cadastro">Crie sua conta</a>
     </div>

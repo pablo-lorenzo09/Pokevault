@@ -1,11 +1,12 @@
 from database.conexao import conectar
 
-def recuperar_pokemons(pag:int=0):
+def recuperar_pokemons(pag: int = 0, tipos: list = None):
     conexao,cursor = conectar()
     offset= 30 * int(pag)
     if offset > 0:
         offset= 30 * (int(pag)-1)
-    cursor.execute("""SELECT
+
+    base_query = """SELECT
         p.id_pokemon AS id,
         p.nome AS name,
 
@@ -60,7 +61,24 @@ def recuperar_pokemons(pag:int=0):
 
     LEFT JOIN Ataques a
     ON ap.id_ataque = a.id_ataque
+    """
 
+    params = []
+
+    # Filtro opcional por tipos de pokemon (agora aceita lista)
+    if tipos:
+        placeholders = ','.join(['%s'] * len(tipos))
+        base_query += f"""
+    WHERE p.id_pokemon IN (
+        SELECT pt2.id_pokemon
+        FROM Pokemons_tipos pt2
+        JOIN tipos t2 ON pt2.id_tipo = t2.id_tipo
+        WHERE t2.tipo IN ({placeholders})
+    )
+        """
+        params.extend(tipos)
+
+    base_query += """
     GROUP BY
         p.id_pokemon,
         p.nome,
@@ -70,15 +88,18 @@ def recuperar_pokemons(pag:int=0):
 
     ORDER BY
         p.id_pokemon
-        LIMIT 30 OFFSET %s;""", [offset])
+    LIMIT 30 OFFSET %s;
+    """
 
+    params.append(offset)
+
+    cursor.execute(base_query, params)
 
     pokemons=cursor.fetchall()
 
     conexao.close()
 
     return pokemons
-
 
 def recuperar_pokemon_unitario(id):
     conexao,cursor = conectar()
@@ -234,3 +255,11 @@ def recuperar_pokemons_destaques():
     conexao.close()
 
     return pokemons
+
+
+def recuperar_tipos():
+    conexao, cursor = conectar()
+    cursor.execute("SELECT id_tipo, tipo FROM tipos ORDER BY tipo;")
+    tipos = cursor.fetchall()
+    conexao.close()
+    return tipos

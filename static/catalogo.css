@@ -421,3 +421,71 @@ main { flex: 1; min-width: 0; }
 .card-img-wrap{
   background-color: white;
 }
+/* ===== FILTROS ATIVOS ===== */
+
+.active-filters {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  padding: 10px 0;
+  margin-bottom: 8px;
+  border-bottom: 1px solid #e0e0e0;
+}
+
+.active-filters-label {
+  font-size: 0.8rem;
+  color: #888;
+  font-weight: 500;
+}
+
+.active-filter-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+}
+
+.active-filter-tag:hover {
+  opacity: 0.7;
+  transform: scale(0.95);
+}
+
+/* ===== TYPE TAG LINKS ===== */
+
+a.type-tag {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+a.type-tag:hover {
+  transform: scale(1.08);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.type-tag.active {
+  outline: 3px solid #333;
+  outline-offset: 1px;
+  transform: scale(1.08);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+a.sidebar-clear {
+  text-decoration: none;
+  color: #e74c3c;
+  cursor: pointer;
+  font-size: 0.85rem;
+}
+
+a.sidebar-clear:hover {
+  text-decoration: underline;
+}

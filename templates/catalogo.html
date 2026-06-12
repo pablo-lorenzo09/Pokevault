@@ -3,6 +3,13 @@
 <link rel="stylesheet" href="../static/catalogo.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css">
 
+<!-- Monta a query string dos filtros ativos (reutilizada na paginação) -->
+{% set ns_pag = namespace(params='') %}
+{% for t in tipos_selecionados %}
+  {% if ns_pag.params %}{% set ns_pag.params = ns_pag.params ~ '&' %}{% endif %}
+  {% set ns_pag.params = ns_pag.params ~ 'tipo=' ~ t %}
+{% endfor %}
+
 <!-- PAGE BODY -->
 <main>
 <div class="page-body">
@@ -11,8 +18,27 @@
   <div class="sidebar-card">
     <div class="sidebar-header">
       <span class="sidebar-title">Filtros</span>
-      <button class="sidebar-clear">Limpar tudo ↺</button>
+      <a href="/catalogo/1" class="sidebar-clear">Limpar tudo ↺</a>
     </div>
+
+    <!-- Filtros ativos -->
+    {% if tipos_selecionados %}
+    <div class="active-filters">
+      <span class="active-filters-label">Ativos:</span>
+      {% for sel in tipos_selecionados %}
+        {% set ns_rem = namespace(params='') %}
+        {% for t in tipos_selecionados %}
+          {% if t != sel %}
+            {% if ns_rem.params %}{% set ns_rem.params = ns_rem.params ~ '&' %}{% endif %}
+            {% set ns_rem.params = ns_rem.params ~ 'tipo=' ~ t %}
+          {% endif %}
+        {% endfor %}
+        <a href="/catalogo/1{% if ns_rem.params %}?{{ ns_rem.params }}{% endif %}" class="active-filter-tag" style="background-color: var(--badge-{{sel}});">
+          {{sel}} ✕
+        </a>
+      {% endfor %}
+    </div>
+    {% endif %}
 
     <!-- Tipo -->
     <div class="filter-section-title">
@@ -21,14 +47,29 @@
     </div>
     <div class="type-grid">
       {% for tipo in tipos %}
-      <span class="type-tag" style="background-color: var(--badge-{{tipo.tipo}});">{{tipo.tipo}}</span>
+        {% if tipo.tipo in tipos_selecionados %}
+          {# Tipo já selecionado — clique remove #}
+          {% set ns = namespace(params='') %}
+          {% for t in tipos_selecionados %}
+            {% if t != tipo.tipo %}
+              {% if ns.params %}{% set ns.params = ns.params ~ '&' %}{% endif %}
+              {% set ns.params = ns.params ~ 'tipo=' ~ t %}
+            {% endif %}
+          {% endfor %}
+          <a href="/catalogo/1{% if ns.params %}?{{ ns.params }}{% endif %}" class="type-tag active" style="background-color: var(--badge-{{tipo.tipo}});">{{tipo.tipo}}</a>
+        {% else %}
+          {# Tipo não selecionado — clique adiciona #}
+          {% set ns = namespace(params='') %}
+          {% for t in tipos_selecionados %}
+            {% if ns.params %}{% set ns.params = ns.params ~ '&' %}{% endif %}
+            {% set ns.params = ns.params ~ 'tipo=' ~ t %}
+          {% endfor %}
+          {% if ns.params %}{% set ns.params = ns.params ~ '&' %}{% endif %}
+          {% set ns.params = ns.params ~ 'tipo=' ~ tipo.tipo %}
+          <a href="/catalogo/1?{{ ns.params }}" class="type-tag" style="background-color: var(--badge-{{tipo.tipo}});">{{tipo.tipo}}</a>
+        {% endif %}
       {% endfor %}
     </div>
-
-    <button class="btn-apply">
-      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="22 3 2 3 10 12.46 10 19 14 21 14 12.46 22 3"/></svg>
-      Aplicar filtros
-    </button>
   </div>
 </aside>
  
@@ -91,25 +132,24 @@
     <!-- PAGINATION -->
     <div class="pagination">
       <button class="page-btn disabled">‹</button>
-      <a href="/catalogo/1"><button class="page-btn">1</button></a>
-      <a href="/catalogo/2"><button class="page-btn">2</button></a>
-      <a href="/catalogo/3"><button class="page-btn">3</button></a>
-      <a href="/catalogo/4"><button class="page-btn">4</button></a>
-      <a href="/catalogo/5"><button class="page-btn">5</button></a>
-      <a href="/catalogo/6"><button class="page-btn">6</button></a>
-      <a href="/catalogo/7"><button class="page-btn">7</button></a>
-      <a href="/catalogo/8"><button class="page-btn">8</button></a>
-      <a href="/catalogo/9"><button class="page-btn">9</button></a>
-      <a href="/catalogo/10"><button class="page-btn">10</button></a>
-      <a href="/catalogo/11"><button class="page-btn">11</button></a>
-      <a href="/catalogo/12"><button class="page-btn">12</button></a>
-      <a href="/catalogo/13"><button class="page-btn">13</button></a>
-
+      <a href="/catalogo/1{% if ns_pag.params %}?{{ ns_pag.params }}{% endif %}"><button class="page-btn">1</button></a>
+      <a href="/catalogo/2{% if ns_pag.params %}?{{ ns_pag.params }}{% endif %}"><button class="page-btn">2</button></a>
+      <a href="/catalogo/3{% if ns_pag.params %}?{{ ns_pag.params }}{% endif %}"><button class="page-btn">3</button></a>
+      <a href="/catalogo/4{% if ns_pag.params %}?{{ ns_pag.params }}{% endif %}"><button class="page-btn">4</button></a>
+      <a href="/catalogo/5{% if ns_pag.params %}?{{ ns_pag.params }}{% endif %}"><button class="page-btn">5</button></a>
+      <a href="/catalogo/6{% if ns_pag.params %}?{{ ns_pag.params }}{% endif %}"><button class="page-btn">6</button></a>
+      <a href="/catalogo/7{% if ns_pag.params %}?{{ ns_pag.params }}{% endif %}"><button class="page-btn">7</button></a>
+      <a href="/catalogo/8{% if ns_pag.params %}?{{ ns_pag.params }}{% endif %}"><button class="page-btn">8</button></a>
+      <a href="/catalogo/9{% if ns_pag.params %}?{{ ns_pag.params }}{% endif %}"><button class="page-btn">9</button></a>
+      <a href="/catalogo/10{% if ns_pag.params %}?{{ ns_pag.params }}{% endif %}"><button class="page-btn">10</button></a>
+      <a href="/catalogo/11{% if ns_pag.params %}?{{ ns_pag.params }}{% endif %}"><button class="page-btn">11</button></a>
+      <a href="/catalogo/12{% if ns_pag.params %}?{{ ns_pag.params }}{% endif %}"><button class="page-btn">12</button></a>
+      <a href="/catalogo/13{% if ns_pag.params %}?{{ ns_pag.params }}{% endif %}"><button class="page-btn">13</button></a>
       <button class="page-btn disabled">›</button>
     </div>
   </main>
 </div>
- 
+
 
 </main>
 

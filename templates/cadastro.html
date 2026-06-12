@@ -5,6 +5,7 @@
   @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;900&family=Bangers&display=swap');
   
   .pv-card {
+    margin-top: 60px;
     background: white;
     border-radius: 20px;
     padding: 2.5rem 2rem 2rem;
@@ -12,6 +13,7 @@
     max-width: 380px;
     position: relative;
     z-index: 2;
+    margin-bottom: 50px;
   }
 
   .pv-header {
@@ -150,6 +152,9 @@
 <div class="pv-root">
 
   <div class="pv-card">
+    <form method="post" action="/cadastro/post">
+
+    
     <div class="pv-header">
       <img class="poke-bola" src="/static/img/pokebola-header.png" alt=""><br>
       <div class="pv-subtitle">Crie sua conta de treinador</div>
@@ -157,36 +162,37 @@
     <!-- NOME COMPLETO -->
     <div class="pv-field">
       <label class="pv-label">Nome Completo</label>
-      <input class="pv-input" type="nome" placeholder="Nome Completo" />
+      <input class="pv-input" id="nome_completo" name="nome_completo" type="nome" placeholder="Nome Completo" />
     </div>
 
     <!-- E-MAIL -->
     <div class="pv-field">
       <label class="pv-label">E-mail</label>
-      <input class="pv-input" type="email" placeholder="seu@email.com" />
+      <input class="pv-input" id="email" name="email" type="email" placeholder="seu@email.com" />
     </div>
 
     <!-- TELEFONE -->
     <div class="pv-field">
       <label class="pv-label">Telefone</label>
-      <input class="pv-input" type="tel" placeholder="(00) 00000-0000" />
+      <input class="pv-input" id="telefone" name="telefone" type="tel" placeholder="(00) 00000-0000" />
     </div>
 
     <!-- ENDEREÇO -->
     <div class="pv-field">
       <label class="pv-label">Endereço</label>
-      <input class="pv-input" type="text" placeholder="Rua, número, cidade..." />
+      <input class="pv-input" id="endereco" name="endereco" type="text" placeholder="Rua, número, cidade..." />
     </div>
 
     <!-- SENHA -->
     <div class="pv-field">
       <label class="pv-label">Senha</label>
-      <input class="pv-input" type="password" placeholder="••••••••" />
+      <input class="pv-input" id="senha" name="senha" type="password" placeholder="••••••••" />
     </div>
 
 
     <button class="pv-btn">CRIAR CONTA</button>
 
+    </form>
     <div class="pv-register">
       Já tem conta? <a href="/login">Entrar</a>
     </div>

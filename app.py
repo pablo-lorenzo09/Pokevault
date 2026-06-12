@@ -2,11 +2,13 @@ from flask import Flask, render_template, request, redirect, session, jsonify
 from model.pokemons_select import recuperar_pokemons
 from model.pokemons_select import recuperar_pokemon_unitario
 from model.pokemons_select import recuperar_pokemons_destaques
+from model.pokemons_select import recuperar_tipos
 from model.tipos import recuperar_tipos
+from model.usuario import cadastrar
+from model.usuario import logar
 # from models.itens import recuperar_produtos, recuperar_produtos_destaques,recuperar_produto
 # from models.pokemon import cadastrar_usuarios
 # from models.usuario import pegar_login
-
 import json
 
 # Abrir arquivo JSON
@@ -30,25 +32,52 @@ def pagina_inicial():
 def pagina_login():
     return render_template("login.html")
 
+@app.route("/login/post", methods=["POST"])
+def logar_usuario_post():
+    email = request.form.get("email")
+    senha = request.form.get("senha")
+
+    resultado = logar(email, senha)
+
+    if resultado:
+        session["usuario_logado"] = resultado
+        print("RESULTADO LOGIN:", resultado)
+        print("TIPO:", type(resultado))
+    return redirect("/")
+
 @app.route("/cadastro")
 def pagina_cadastro():
     return render_template("cadastro.html")
 
+@app.route("/cadastro/post", methods=["POST"])
+def tela_cadastro_post():
+    email = request.form.get("email")
+    senha = request.form.get("senha")
+    nome = request.form.get("nome_completo")
+    telefone = request.form.get("telefone")
+    endereco = request.form.get("endereco")
+    
+    cadastrar(email, nome, telefone, endereco, senha)
+
+    return redirect("/login")
+
 @app.route("/catalogo/<pag>")
 def pagina_catalogo(pag=0):
+    tipos_filtro = request.args.getlist("tipo")
+    pokemons = recuperar_pokemons(pag=pag, tipos=tipos_filtro)
     tipos = recuperar_tipos()
-    pokemons = recuperar_pokemons(pag= pag)
-    return render_template("catalogo.html", pokemons = pokemons, tipos = tipos)
-
+    return render_template(
+        "catalogo.html",
+        pokemons=pokemons,
+        tipos=tipos,
+        tipos_selecionados=tipos_filtro
+    )
 @app.route("/unitario/<id>")
 def pagina_unitario(id):
     pokemon = recuperar_pokemon_unitario(id)
     return render_template("unitario.html",pokemon = pokemon)
 
 
-# @app.route("/produto/<int:codigo>")
-# def segunda_pagina(codigo):
-#     return render_template("produto.html", produto = produto)
 
 
 
