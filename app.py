@@ -5,7 +5,7 @@ from model.pokemons_select import recuperar_pokemons_destaques
 # from models.itens import recuperar_produtos, recuperar_produtos_destaques,recuperar_produto
 # from models.pokemon import cadastrar_usuarios
 # from models.usuario import pegar_login
-
+# eeee
 import json
 
 # Abrir arquivo JSON
