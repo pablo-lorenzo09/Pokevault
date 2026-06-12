@@ -3,6 +3,7 @@ from model.pokemons_select import recuperar_pokemons
 from model.pokemons_select import recuperar_pokemon_unitario
 from model.pokemons_select import recuperar_pokemons_destaques
 from model.pokemons_select import recuperar_tipos
+from model.tipos import recuperar_tipos
 # from models.itens import recuperar_produtos, recuperar_produtos_destaques,recuperar_produto
 # from models.pokemon import cadastrar_usuarios
 # from models.usuario import pegar_login
@@ -22,7 +23,7 @@ app.secret_key = 'IsoSOsoso'
 @app.route("/")
 @app.route("/inicio")
 def pagina_inicial():
-    poke_destaque = recuperar_pokemons_destaques
+    poke_destaque = recuperar_pokemons_destaques()
     return render_template("index.html",destaques=poke_destaque)
 
 @app.route("/login")
