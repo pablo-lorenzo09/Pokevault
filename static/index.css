@@ -171,6 +171,11 @@ main {
   image-rendering: auto;
 }
 
+.img-wrap a {
+  display: flex;
+  justify-content: center;
+}
+
 .card-destaque:hover .img-wrap img {
   transform: scale(1.08);
 }
