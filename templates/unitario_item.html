@@ -1,0 +1,83 @@
+{% extends "layout.html" %}
+{% block conteudo %}
+
+    <!-- MAIN -->
+
+
+    <main class="container">
+
+      <!-- LEFT (IMAGEM) -->
+      <section class="gallery">
+        <div class="main-image">
+          <img
+            src="{{pokemon.image}}">
+        </div>
+      </section>
+
+      <!-- RIGHT (INFO) -->
+      <section class="info">
+        <span class="tag" style="background-color: var(--badge-{{pokemon.type1}});">{{pokemon.type1}}</span>
+        <h2>{{pokemon.name}}</h2>
+
+        <p class="desc">
+          {{pokemon.description}}
+        </p>
+
+
+        <div class="attacks" style="background-color: var(--{{pokemon.type1}});">
+          <h4 style="margin-bottom: 15px;">Ataques</h4>
+          <ul>
+            <li style="border: solid 1px var(--badge-{{pokemon.type1}});">{{pokemon.attack1}}<span class="tag" style="background-color: var(--{{pokemon.attack1_type}});">{{pokemon.attack1_type}}</span></li>
+            <li style="border: solid 1px var(--badge-{{pokemon.type1}});">{{pokemon.attack2}}<span class="tag" style="background-color: var(--{{pokemon.attack2_type}});">{{pokemon.attack2_type}}</span></li>
+            <li style="border: solid 1px var(--badge-{{pokemon.type1}});">{{pokemon.attack3}}<span class="tag" style="background-color: var(--{{pokemon.attack3_type}});">{{pokemon.attack3_type}}</span></li>
+            <li style="border: solid 1px var(--badge-{{pokemon.type1}});">{{pokemon.attack4}}<span class="tag" style="background-color: var(--{{pokemon.attack4_type}});">{{pokemon.attack4_type}}</span></li>
+          </ul>
+        </div>
+
+        <div class="buy-wrapper">
+          <div class="buy">
+            <h3>R$ {{pokemon.price}}</h3>
+            <div class="in-stock">Em estoque</div>
+            <div class="buy-row">
+              <div class="actions">
+                <button>−</button>
+                <span>1</span>
+                <button>+</button>
+              </div>
+              <button class="buy-btn">🛒 Comprar agora</button>
+            </div>
+            <div class="secure">🛡 Compra segura e protegida pela PokeVault</div>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- AVALIAÇÕES -->
+    <section class="reviews">
+
+      <div class="score">
+        <h2>4.9</h2>
+        <p>baseado em 128 avaliações</p>
+      </div>
+
+      <div class="review-list">
+        <div class="review">
+          <h4>Treinador Lucas</h4>
+          <p>Super rápido e poderoso!</p>
+        </div>
+
+        <div class="review">
+          <h4>Mestre Elétrico</h4>
+          <p>Um dos melhores companheiros!</p>
+        </div>
+
+        <div class="review">
+          <h4>Nina Volt</h4>
+          <p>Perfeito em batalha!</p>
+        </div>
+      </div>
+
+    </section>
+
+{% endblock %}
