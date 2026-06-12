@@ -44,6 +44,8 @@ def tela_cadastro_post():
     
     cadastrar(email, nome, telefone, endereco, senha)
 
+    return redirect("/")
+
 @app.route("/catalogo/<pag>")
 def pagina_catalogo(pag=0):
     pokemons = recuperar_pokemons(pag= pag)
