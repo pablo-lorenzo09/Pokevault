@@ -20,20 +20,9 @@
       <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="18 15 12 9 6 15"/></svg>
     </div>
     <div class="type-grid">
-      <span class="type-tag fogo">Fogo</span>
-      <span class="type-tag agua">Água</span>
-      <span class="type-tag planta">Planta</span>
-      <span class="type-tag eletrico">Elétrico</span>
-      <span class="type-tag psiquico">Psíquico</span>
-      <span class="type-tag gelo">Gelo</span>
-      <span class="type-tag lutador">Lutador</span>
-      <span class="type-tag voo">Voador</span>
-      <span class="type-tag terra">Terra</span>
-      <span class="type-tag veneno">Veneno</span>
-      <span class="type-tag fantasma">Fantasma</span>
-      <span class="type-tag dragao">Dragão</span>
-      <span class="type-tag aco">Aço</span>
-      <span class="type-tag todo">Tudo</span>
+      {% for tipo in tipos %}
+      <span class="type-tag" style="background-color: var(--badge-{{tipo.tipo}});">{{tipo.tipo}}</span>
+      {% endfor %}
     </div>
 
     <button class="btn-apply">

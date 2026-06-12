@@ -9,7 +9,7 @@
             <div class="hero-content">
                 <h1>Encontre seu <span>companheiro</span> perfeito!</h1>
                 <p>Criaturas únicas. Laços eternos.</p>
-                <a href="/catalogo">
+                <a href="/catalogo/1">
                      <button class="btn-primary">Explorar catálogo</button>
                 </a>
                
@@ -30,10 +30,30 @@
 
             <div class="destaque-header">
                 <h2>Pokemon em Destaque</h2>
-                <button class="ver-todos">Ver todos →</button>
+                <a href="/catalogo/1"><button class="ver-todos">Ver todos →</button></a>
             </div>
 
-            <div class="destaque-grid" id="pokemonDestaque"></div>
+            <div class="destaque-grid" id="pokemonDestaque">
+                {% for pokemon in destaques: %}
+            
+                <div class="card-destaque">
+                    <div class="img-wrap" style="background:var(--{{pokemon.type1}})">
+                        <span class="type-badge" style="background:var(--badge-{{pokemon.type1}})">{{pokemon.type1}}</span>
+                        <button class="btn-fav">
+                            <span class="material-symbols-outlined">favorite</span>
+
+                        </button>
+                        <a href="/unitario/{{pokemon.id}}">
+                        <img src="{{pokemon.image}}" alt="{{pokemon.name}}">
+                    </div>
+                    <div class="card-info">
+                        <div class="nome">{{pokemon.name}}</div>
+                        <div class="tipo-texto">{{pokemon.type1}}{% if pokemon.type2 == none :%}{% else %}/{{pokemon.type2}}{% endif %}</div>
+                    </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
 
             <div class="destaque-header">
                 <h2>Itens e Pokebolas em Destaque</h2>
