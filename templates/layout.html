@@ -11,6 +11,8 @@
     <link rel="stylesheet" href="/static/reset.css">
     <link rel="stylesheet" href="/static/index.css">
     <link rel="stylesheet" href="/static/unitario.css">
+
+    <link rel="icon" href="https://www.image2url.com/r2/default/images/1781272934548-e483da08-be8f-4d82-9dac-2845a16d50d4.png">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;600&display=swap" rel="stylesheet">
 
@@ -73,9 +75,10 @@
                     <li>Sobre nós</li>
                     <li>Contato</li>
 
-                    <li class="cart">
-                        <span class="material-symbols-outlined">shopping_cart</span>
-
+                    <li class="cart-btn">
+                        <button onclick="toggleCart()">
+                            <span class="material-symbols-outlined">shopping_cart</span>
+                        </button>
                     </li>
                 </ul>
             </nav>
@@ -105,6 +108,49 @@
             <div><strong>Satisfação garantida</strong><span>7 dias para devolução.</span></div>
         </div>
     </footer>
+
+    <aside class="cart" id="cart">
+
+      <div class="cart__header">
+        <strong style="color: black;">Seu Carrinho</strong>
+        <span onclick="toggleCart()" style="cursor:pointer; color: black;">✖</span>
+      </div>
+
+      <div class="cart__items" id="cart-items">
+        <!-- Itens vão aqui -->
+        
+      </div>
+
+      <div class="cart__footer">
+        <div class="cart__total" style="color: black;">
+          <strong style="color: black;" id="cart-total">Total:</strong> R$ 00,00
+        </div>
+
+        <button class="cart__btn">
+          Finalizar Pedido
+        </button>
+      </div>
+
+    </aside>
+
+    <script>
+        function toggleCart() {
+        const cart = document.getElementById('cart');
+        const overlay = document.querySelector('.cart-overlay');
+        
+        cart.classList.toggle('open');
+        
+        if (!overlay) {
+          const newOverlay = document.createElement('div');
+          newOverlay.className = 'cart-overlay';
+          newOverlay.onclick = toggleCart;
+          document.body.appendChild(newOverlay);
+          setTimeout(() => newOverlay.classList.add('active'), 10);
+        } else {
+          overlay.classList.toggle('active');
+        }
+      }
+    </script>
 
 </body>
 
