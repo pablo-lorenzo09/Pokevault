@@ -91,3 +91,12 @@ CREATE TABLE produtos_carrinho (
         REFERENCES carrinhos(id_carrinho)
 );
 
+CREATE TABLE comentario_unitario (
+    cod_comentario INT PRIMARY KEY AUTO_INCREMENT,
+    id_pokemon INT NOT NULL,
+    nome_usuario VARCHAR(100) DEFAULT 'ANÔNIMO',
+    comentario TEXT,
+    nota INT DEFAULT 0,
+    CONSTRAINT chk_nota_unitario CHECK (nota >= 0 AND nota <= 5),
+    FOREIGN KEY (id_pokemon) REFERENCES Pokemons(id_pokemon)
+);

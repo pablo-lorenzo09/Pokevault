@@ -9,6 +9,16 @@
   {% if ns_pag.params %}{% set ns_pag.params = ns_pag.params ~ '&' %}{% endif %}
   {% set ns_pag.params = ns_pag.params ~ 'tipo=' ~ t %}
 {% endfor %}
+{% if ordem_selecionada %}
+  {% if ns_pag.params %}{% set ns_pag.params = ns_pag.params ~ '&' %}{% endif %}
+  {% set ns_pag.params = ns_pag.params ~ 'ordem=' ~ ordem_selecionada %}
+{% endif %}
+
+{% set ns_sort = namespace(params='') %}
+{% for t in tipos_selecionados %}
+  {% if ns_sort.params %}{% set ns_sort.params = ns_sort.params ~ '&' %}{% endif %}
+  {% set ns_sort.params = ns_sort.params ~ 'tipo=' ~ t %}
+{% endfor %}
 
 <!-- PAGE BODY -->
 <main>
@@ -80,10 +90,10 @@
         <h1 class="catalog-title">Catálogo de Pokemons</h1>
         <p class="catalog-subtitle">Encontre seu companheiro perfeito entre centenas de criaturas incríveis!</p>
       </div>
-      <select class="sort-select">
-        <option>Ordenar</option>
-        <option>Menor preço</option>
-        <option>Maior preço</option>
+      <select class="sort-select" onchange="if(this.value) window.location.href = this.value">
+        <option value="">Ordenar</option>
+        <option value="/catalogo/{{ pag if pag else 1 }}?{{ ns_sort.params }}{%- if ns_sort.params -%}&{%- endif -%}ordem=asc" {% if ordem_selecionada == 'asc' %}selected{% endif %}>Menor preço</option>
+        <option value="/catalogo/{{ pag if pag else 1 }}?{{ ns_sort.params }}{%- if ns_sort.params -%}&{%- endif -%}ordem=desc" {% if ordem_selecionada == 'desc' %}selected{% endif %}>Maior preço</option>
       </select>
     </div>
  
@@ -95,14 +105,7 @@
           <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         </button>
       </div>
-      <div class="view-btns">
-        <button class="view-btn active">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>
-        </button>
-        <button class="view-btn">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><line x1="3" y1="6" x2="3.01" y2="6"/><line x1="3" y1="12" x2="3.01" y2="12"/><line x1="3" y1="18" x2="3.01" y2="18"/></svg>
-        </button>
-      </div>
+
     </div>
  
     <!-- CARD GRID -->
@@ -114,7 +117,7 @@
               <img src="{{pokemon.image}}" alt="{{pokemon.name}}" loading="lazy">
               <span class="card-badge" style="background:var(--badge-{{pokemon.type1}})">{{pokemon.type1}}</span>
               <button class="card-fav" title="Favoritar">
-                <i class="bi bi-cart-plus icone"></i>
+                    <span class="material-symbols-outlined">shopping_cart</span>
               </button>
             </div>
             <div class="card-body">

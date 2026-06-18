@@ -35,12 +35,27 @@
         <!-- TOPO -->
         <div class="header-top">
 
+            {% if session.get('usuario_logado') %}
+            <div class="user-area">
+                <span style="color: white;" class="material-symbols-outlined">person</span>
+
+                <!-- aqui depende do que vem no resultado -->
+                <span style="color: white;" class="user-name">
+                    {{ session['usuario_logado']['nome'] }}
+                </span>
+
+                <a href="/logout">
+                    <button class="btn-login">Sair</button>
+                </a>
+            </div>
+            {% else %}
             <a href="/login">
                 <button class="btn-login">
                     <span class="material-symbols-outlined">person</span>
                     Entrar
                 </button>
             </a>
+            {% endif %}
 
             <a href="/inicio">
                 <img src="/static/img/nome-header.png" class="logo" alt="PokeVault">
@@ -62,7 +77,8 @@
                     </a>
 
                     <div class="dropdown">
-                        <button class="btn-dropdown active-red">Menu <span class="material-symbols-outlined arrow">expand_more</span></button>
+                        <button class="btn-dropdown active-red">Menu <span
+                                class="material-symbols-outlined arrow">expand_more</span></button>
                         <div class="dropdown-conteudo">
                             <a href="/catalogo/1">Pokemons</a>
                             <a href="#">Itens</a>

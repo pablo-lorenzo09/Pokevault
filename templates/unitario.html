@@ -1,10 +1,10 @@
 {% extends "layout.html" %}
 {% block conteudo %}
 
-    <!-- MAIN -->
+<!-- MAIN -->
 
 
-    <main class="container">
+<main class="container">
 
       <!-- LEFT (IMAGEM) -->
       <section class="gallery">
@@ -14,14 +14,14 @@
         </div>
       </section>
 
-      <!-- RIGHT (INFO) -->
-      <section class="info">
-        <span class="tag" style="background-color: var(--badge-{{pokemon.type1}});">{{pokemon.type1}}</span>
-        <h2>{{pokemon.name}}</h2>
+  <!-- RIGHT (INFO) -->
+  <section class="info">
+    <span class="tag" style="background-color: var(--badge-{{pokemon.type1}});">{{pokemon.type1}}</span>
+    <h2>{{pokemon.name}}</h2>
 
-        <p class="desc">
-          {{pokemon.description}}
-        </p>
+    <p class="desc">
+      {{pokemon.description}}
+    </p>
 
 
         <div class="attacks" style="background-color: var(--{{pokemon.type1}});">
@@ -34,50 +34,81 @@
           </ul>
         </div>
 
-        <div class="buy-wrapper">
-          <div class="buy">
-            <h3>R$ {{pokemon.price}}</h3>
-            <div class="in-stock">Em estoque</div>
-            <div class="buy-row">
-              <div class="actions">
-                <button>−</button>
-                <span>1</span>
-                <button>+</button>
-              </div>
-              <button class="buy-btn">🛒 Comprar agora</button>
-            </div>
-            <div class="secure">🛡 Compra segura e protegida pela PokeVault</div>
+    <div class="buy-wrapper">
+      <div class="buy">
+        <h3>R$ {{pokemon.price}}</h3>
+        <div class="in-stock">Em estoque</div>
+        <div class="buy-row">
+          <div class="actions">
+            <button>−</button>
+            <span>1</span>
+            <button>+</button>
           </div>
+          <button class="buy-btn"><span class="material-symbols-outlined">
+              add_shopping_cart
+            </span> Comprar agora</button>
         </div>
-      </section>
+        <div class="secure">🛡 Compra segura e protegida pela PokeVault</div>
+      </div>
+    </div>
+  </section>
 
-    </main>
+</main>
 
-    <!-- AVALIAÇÕES -->
-    <section class="reviews">
+<div class="reviews-container">
 
-      <div class="score">
-        <h2>4.9</h2>
-        <p>baseado em 128 avaliações</p>
+  <!-- Tabs -->
+  <div class="tabs">
+    <span class="tab active"><span class="material-symbols-outlined">
+        star
+      </span>Avaliações</span>
+  </div>
+
+  <div class="lista-comentarios">
+
+  </div>
+
+  <!-- Comentário 3 -->
+  <div class="review">
+    <img src="https://images.icon-icons.com/851/PNG/512/Pokemon_Trainer_Boy_icon-icons.com_67516.png" class="avatar">
+
+    <div class="review-content">
+      <div class="top">
+        <strong>Nina Volt</strong>
       </div>
 
-      <div class="review-list">
-        <div class="review">
-          <h4>Treinador Lucas</h4>
-          <p>Super rápido e poderoso!</p>
-        </div>
+      <div class="stars">★★★★★</div>
 
-        <div class="review">
-          <h4>Mestre Elétrico</h4>
-          <p>Um dos melhores companheiros!</p>
-        </div>
+      <p>Chegou rápido e em perfeito estado! Já virou meu parceiro inseparável nas batalhas.</p>
+    </div>
+  </div>
 
-        <div class="review">
-          <h4>Nina Volt</h4>
-          <p>Perfeito em batalha!</p>
-        </div>
+  <div class="avaliacao-form">
+    <div class="avatar">
+      <img src="https://images.icon-icons.com/851/PNG/512/Pokemon_Trainer_Boy_icon-icons.com_67516.png" alt="avatar">
+    </div>
+
+    <div class="form-content">
+      <h3>Deixe sua avaliação</h3>
+
+      <!-- Estrelas -->
+      <div class="stars">
+        <input type="radio" name="star" id="star5" value="5"><label for="star5">★</label>
+        <input type="radio" name="star" id="star4" value="4"><label for="star4">★</label>
+        <input type="radio" name="star" id="star3" value="3"><label for="star3">★</label>
+        <input type="radio" name="star" id="star2" value="2"><label for="star2">★</label>
+        <input type="radio" name="star" id="star1" value="1"><label for="star1">★</label>
       </div>
 
-    </section>
+      <!-- Comentário -->
+      <textarea placeholder="Escreva seu comentário..."></textarea>
+
+      <button class="button_enviar">Enviar avaliação</button>
+    </div>
+  </div>
+
+
+</div>
+<script src="/static/script/comentarios.js"></script>
 
 {% endblock %}
