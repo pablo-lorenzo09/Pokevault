@@ -6,12 +6,13 @@
 
 <main class="container">
 
-  <!-- LEFT (IMAGEM) -->
-  <section class="gallery">
-    <div class="main-image">
-      <img src="{{pokemon.image}}">
-    </div>
-  </section>
+      <!-- LEFT (IMAGEM) -->
+      <section class="gallery">
+        <div class="main-image" style="background-color: var(--{{pokemon.type1}}); border: solid 2px var(--badge-{{pokemon.type1}}) ;">
+          <img
+            src="{{pokemon.image}}">
+        </div>
+      </section>
 
   <!-- RIGHT (INFO) -->
   <section class="info">
@@ -23,19 +24,15 @@
     </p>
 
 
-    <div class="attacks" style="background-color: var(--{{pokemon.type1}});">
-      <h4 style="margin-bottom: 15px;">Ataques</h4>
-      <ul>
-        <li style="border: solid 1px var(--badge-{{pokemon.type1}});">{{pokemon.attack1}}<span class="tag"
-            style="background-color: var(--{{pokemon.attack1_type}});">{{pokemon.attack1_type}}</span></li>
-        <li style="border: solid 1px var(--badge-{{pokemon.type1}});">{{pokemon.attack2}}<span class="tag"
-            style="background-color: var(--{{pokemon.attack2_type}});">{{pokemon.attack2_type}}</span></li>
-        <li style="border: solid 1px var(--badge-{{pokemon.type1}});">{{pokemon.attack3}}<span class="tag"
-            style="background-color: var(--{{pokemon.attack3_type}});">{{pokemon.attack3_type}}</span></li>
-        <li style="border: solid 1px var(--badge-{{pokemon.type1}});">{{pokemon.attack4}}<span class="tag"
-            style="background-color: var(--{{pokemon.attack4_type}});">{{pokemon.attack4_type}}</span></li>
-      </ul>
-    </div>
+        <div class="attacks" style="background-color: var(--{{pokemon.type1}});">
+          <h4 style="margin-bottom: 15px;">Ataques</h4>
+          <ul>
+            <li style="border: solid 1px var(--badge-{{pokemon.type1}});">{{pokemon.attack1}}<span class="tag" style="background-color: var(--badge-{{pokemon.attack1_type}});">{{pokemon.attack1_type}}</span></li>
+            <li style="border: solid 1px var(--badge-{{pokemon.type1}});">{{pokemon.attack2}}<span class="tag" style="background-color: var(--badge-{{pokemon.attack2_type}});">{{pokemon.attack2_type}}</span></li>
+            <li style="border: solid 1px var(--badge-{{pokemon.type1}});">{{pokemon.attack3}}<span class="tag" style="background-color: var(--badge-{{pokemon.attack3_type}});">{{pokemon.attack3_type}}</span></li>
+            <li style="border: solid 1px var(--badge-{{pokemon.type1}});">{{pokemon.attack4}}<span class="tag" style="background-color: var(--badge-{{pokemon.attack4_type}});">{{pokemon.attack4_type}}</span></li>
+          </ul>
+        </div>
 
     <div class="buy-wrapper">
       <div class="buy">
