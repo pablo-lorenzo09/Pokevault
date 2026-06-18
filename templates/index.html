@@ -66,32 +66,6 @@
                     <div class="img-wrap" style="background:var(--{{pokemon.type1}})">
                         <span class="type-badge" style="background:var(--badge-{{pokemon.type1}})">{{pokemon.type1}}</span>
                         <button class="btn-fav">
-                            <span class="material-symbols-outlined">shopping_cart</span>
-                        </button>
-                        <a href="/unitario/{{pokemon.id}}">
-                        <img src="{{pokemon.image}}" alt="{{pokemon.name}}">
-                    </div>
-                    <div class="card-info">
-                        <div class="nome">{{pokemon.name}}</div>
-                        <div class="tipo-texto">{{pokemon.type1}}{% if pokemon.type2 == none :%}{% else %}/{{pokemon.type2}}{% endif %}</div>
-                    </div>
-                    </a>
-                </div>
-                {% endfor %}
-            </div>
-
-            <div class="destaque-header_len">
-                <h2>Pokemon Lendários em Destaque</h2>
-                <a href="/catalogo/1"><button class="ver-todos">Ver todos →</button></a>
-            </div>
-
-            <div class="destaque-grid" id="pokemonDestaque">
-                {% for pokemon in destaques_len: %}
-            
-                <div class="card-destaque">
-                    <div class="img-wrap" style="background:var(--{{pokemon.type1}})">
-                        <span class="type-badge" style="background:var(--badge-{{pokemon.type1}})">{{pokemon.type1}}</span>
-                        <button class="btn-fav">
                             <span class="material-symbols-outlined">favorite</span>
 
                         </button>
