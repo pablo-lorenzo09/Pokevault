@@ -216,6 +216,7 @@ main { flex: 1; min-width: 0; }
   align-items: center;
   gap: 8px;
   margin-bottom: 14px;
+  justify-content: flex-end;
 }
 .results-count { font-size: 14px; color: var(--text-light); font-weight: 700; flex: 1; }
 
