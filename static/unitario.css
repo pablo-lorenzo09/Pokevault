@@ -429,3 +429,16 @@ textarea {
 .button_enviar:hover {
   background: #e03232;
 }
+
+/*  */
+.btn-delete{
+  margin-top: 15px;
+  background: #ffffff;
+  box-shadow: 0px 10px 20px -5px rgba(150, 150, 150, 0.1);
+  color: rgb(0, 0, 0);
+  border: 1px solid #ebebeb;
+  padding: 8px 15px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.2s;
+}

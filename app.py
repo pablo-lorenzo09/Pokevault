@@ -48,6 +48,7 @@ def logar_usuario_post():
     senha = request.form.get("senha")
 
     resultado = logar(email, senha)
+    print("RESULTADO LOGIN:", resultado)
 
     if resultado:
         session["usuario_logado"] = resultado
