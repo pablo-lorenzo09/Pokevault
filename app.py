@@ -2,6 +2,7 @@ from flask import Flask, render_template, request, redirect, session, jsonify
 from model.pokemons_select import recuperar_pokemons
 from model.pokemons_select import recuperar_pokemon_unitario
 from model.pokemons_select import recuperar_pokemons_destaques
+from model.pokemons_select import recuperar_pokemons_destaques_lendarios
 from model.pokemons_select import recuperar_tipos
 from model.pokemons_select import recuperar_pokemons_preco_min
 from model.pokemons_select import recuperar_pokemons_preco_max
@@ -31,7 +32,8 @@ app.secret_key = 'IsoSOsoso'
 @app.route("/inicio")
 def pagina_inicial():
     poke_destaque = recuperar_pokemons_destaques()
-    return render_template("index.html",destaques=poke_destaque)
+    poke_len_destaque=recuperar_pokemons_destaques_lendarios()
+    return render_template("index.html",destaques=poke_destaque, destaques_len = poke_len_destaque)
 
 @app.route("/login")
 def pagina_login():

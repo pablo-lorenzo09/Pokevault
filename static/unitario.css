@@ -16,12 +16,12 @@
 --Sombrio: #D4D6DB;
 --Aço: #E2E5E8;
 --Fada: #FCE1E4;
---Normal: #caada5;
+--Normal: #e0e0e0;
 
 --badge-Fogo: #e67e22;
 --badge-Água: #2980b9;
 --badge-Planta: #27ae60;
---badge-Elétrico: #f39c12;
+--badge-Elétrico: #f3ca12;
 --badge-Gelo: #76b4d8;
 --badge-Lutador: #ff1900;
 --badge-Veneno: #7d3c98;
@@ -53,7 +53,7 @@
 }
 
 .main-image {
-  background: white;
+  background-color: white;
   padding: 20px;
   border-radius: 20px;
   height: 100%;
@@ -87,6 +87,7 @@
   background: #ffd166;
   padding: 5px 10px;
   border-radius: 10px;
+  color: white;
 }
 
 .info h2 {
@@ -127,6 +128,7 @@
   justify-content: space-between;
   padding: 8px ;
   border-radius: 100px;
+  align-items: center;
 }
 
 
