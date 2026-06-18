@@ -9,7 +9,7 @@ from model.pokemons_select import recuperar_pokemons_preco_max
 from model.tipos import recuperar_tipos
 from model.usuario import cadastrar
 from model.usuario import logar
-from model.comentarios import enviar_comentario_unitario
+from model.comentarios import enviar_comentario_unitario, obter_autor_comentario
 from model.comentarios import obter_comentarios_unitario
 from model.comentarios import deletar_comentario_unitario
 # from models.itens import recuperar_produtos, recuperar_produtos_destaques,recuperar_produto
@@ -116,15 +116,30 @@ def unitario_post_comentario(id):
     enviar_comentario_unitario(
         comentario=dados.get('comentario'),
         id_pokemon=int(id),
-        nome_usuario=usuario['nome'],  # 
+        id_usuario=usuario['id_usuario'],
+        nome_usuario=usuario['nome'],
         nota=dados.get('nota')
     )
     return jsonify({'message': 'Comentário enviado com sucesso'}), 200
 
+
 @app.route("/unitario/<id>/comentarios/delete", methods=['DELETE'])
 def unitario_delete_comentario(id):
+    if "usuario_logado" not in session:
+        return jsonify({'message': 'Não autorizado'}), 401
+
     dados = request.get_json()
-    deletar_comentario_unitario(int(dados.get('codigo')))
+    cod_comentario = int(dados.get('codigo'))
+
+    autor = obter_autor_comentario(cod_comentario)
+    if not autor:
+        return jsonify({'message': 'Comentário não encontrado'}), 404
+
+    usuario_logado_id = session["usuario_logado"]['id_usuario']
+    if autor['id_usuario'] != usuario_logado_id:
+        return jsonify({'message': 'Você só pode excluir seu próprio comentário'}), 403
+
+    deletar_comentario_unitario(cod_comentario)
     return jsonify({'message': 'Comentário deletado'}), 200
 
 

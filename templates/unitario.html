@@ -109,6 +109,9 @@
 
 
 </div>
+<script>
+    const usuarioLogadoId = {{ session.get('usuario_logado', {}).get('id_usuario', 'null') }};
+</script>
 <script src="/static/script/comentarios.js"></script>
 
 {% endblock %}
