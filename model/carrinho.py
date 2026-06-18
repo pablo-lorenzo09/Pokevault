@@ -34,4 +34,12 @@ def adicionar_pokemon_carrinho(id_pokemon,id_carrinho):
     return True
 
 
+def remover_pokemon_carrinho(id_pokemon,id_carrinho):
+        conexao,cursor = conectar()
 
+        cursor.execute("""DELETE FROM produtos_carrinho WHERE id_pokemon = %s AND id_carrinho = %s LIMIT 1;""",(id_pokemon,id_carrinho)) 
+        
+        conexao.commit()
+
+        conexao.close()
+        return True

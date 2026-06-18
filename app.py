@@ -14,6 +14,7 @@ from model.comentarios import obter_comentarios_unitario
 from model.comentarios import deletar_comentario_unitario
 from model.carrinho import recuperar_carrinho
 from model.carrinho import adicionar_pokemon_carrinho
+from model.carrinho import remover_pokemon_carrinho
 # from models.itens import recuperar_produtos, recuperar_produtos_destaques,recuperar_produto
 # from models.pokemon import cadastrar_usuarios
 # from models.usuario import pegar_login
@@ -138,6 +139,12 @@ def pag_carrinho():
 def pag_carrinho_post(id):
     adicionar_pokemon_carrinho(id,session['usuario_logado']["id_usuario"])
     return redirect("/inicio")
+
+@app.route("/carrinho/delete/<int:id>")
+def pag_carrinho_delete(id):
+    remover_pokemon_carrinho(id,session['usuario_logado']["id_usuario"])
+    return redirect("/inicio")
+
 
 # @app.route("/api/get/carrinho", methods = ["GET"])
 # def api_get_carrinho():
