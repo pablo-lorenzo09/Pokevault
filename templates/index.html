@@ -5,24 +5,15 @@
     <main>
 
         <!-- HERO / BANNER -->
-        <section class="hero">
-            <div class="hero-content">
-                <h1>Encontre seu <span>companheiro</span> perfeito!</h1>
-                <p>Criaturas únicas. Laços eternos.</p>
-                <a href="/catalogo/1">
-                     <button class="btn-primary">Explorar catálogo</button>
-                </a>
-               
-            </div>
-
-            <div class="hero-image">
-                <img src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/135.png"
-                    alt="Pokemon destaque">
-            </div>
+        <section class="hero" id="heroCarousel">
+            <div class="hero-slides" id="heroSlides"></div>
 
             <!-- Setas -->
-            <button class="hero-arrow left">&#10094;</button>
-            <button class="hero-arrow right">&#10095;</button>
+            <button class="hero-arrow left" id="prevBtn">&#10094;</button>
+            <button class="hero-arrow right" id="nextBtn">&#10095;</button>
+
+            <!-- Pontos de navegação -->
+            <div class="hero-dots" id="heroDots"></div>
         </section>
 
         <!-- DESTAQUES -->
@@ -54,32 +45,12 @@
                 {% endfor %}
             </div>
 
-            <div class="destaque-header_len">
-                <h2>Pokemon Lendários em Destaque</h2>
-                <a href="/catalogo/1"><button class="ver-todos">Ver todos →</button></a>
+            <div class="destaque-header">
+                <h2>Itens e Pokebolas em Destaque</h2>
+                <button class="ver-todos">Ver todos →</button>
             </div>
 
-            <div class="destaque-grid" id="pokemonDestaque">
-                {% for pokemon in destaques_len: %}
-            
-                <div class="card-destaque">
-                    <div class="img-wrap" style="background:var(--{{pokemon.type1}})">
-                        <span class="type-badge" style="background:var(--badge-{{pokemon.type1}})">{{pokemon.type1}}</span>
-                        <button class="btn-fav">
-                            <span class="material-symbols-outlined">favorite</span>
-
-                        </button>
-                        <a href="/unitario/{{pokemon.id}}">
-                        <img src="{{pokemon.image}}" alt="{{pokemon.name}}">
-                    </div>
-                    <div class="card-info">
-                        <div class="nome">{{pokemon.name}}</div>
-                        <div class="tipo-texto">{{pokemon.type1}}{% if pokemon.type2 == none :%}{% else %}/{{pokemon.type2}}{% endif %}</div>
-                    </div>
-                    </a>
-                </div>
-                {% endfor %}
-            </div>
+            <div class="destaque-grid" id="itensDestaque"></div>
 
         </section>
 
@@ -88,7 +59,138 @@
 <script>
 
 
+// ============================
+// CARROSSEL HERO
+// ============================
 
+const slides = [
+    {
+        bg: '/static/img/hero1.png',
+        titulo: 'Encontre seu <span>companheiro</span> perfeito!',
+        subtitulo: 'Criaturas únicas. Laços eternos.',
+        btn: 'Explorar catálogo',
+        link: '/catalogo/1'
+    },
+
+    {
+        bg: '/static/img/hero2.png',
+        titulo: 'Pokemons <span>especiais</span> esperando um novo treinador!',
+        subtitulo: 'Charmander, moltress e muito mais esperando por você!',
+        btn: 'Ver Pokemons',
+        link: '/catalogo/1?tipo=Fogo'
+    },
+
+    {
+        bg: '/static/img/hero3.png',
+        titulo: 'Pokemons de <span>planta</span> disponíveis!',
+        subtitulo: 'verifique já!',
+        btn: 'Ver Pokemons',
+        link: '/catalogo/1?tipo=Planta'
+    },
+    
+    {
+        bg: '/static/img/hero4.png',
+        titulo: 'Pokémons <span>Lendários</span> chegaram!',
+        subtitulo: 'Rayquaza, Lugia e muito mais esperando por você.',
+        btn: 'Ver lendários',
+        link: '/catalogo/1?ordem=desc'
+    }
+
+];
+
+(function iniciarCarrossel() {
+    const slidesEl = document.getElementById('heroSlides');
+    const dotsEl   = document.getElementById('heroDots');
+    let current = 0;
+    let timer;
+
+    // Cria slides e pontos dinamicamente
+    slides.forEach(function(s, i) {
+        // --- Slide ---
+        const slide = document.createElement('div');
+        slide.className = 'hero-slide';
+        slide.style.backgroundImage = "url('" + s.bg + "')";
+        slide.innerHTML =
+            '<div class="hero-content">' +
+                '<h1>' + s.titulo + '</h1>' +
+                '<p>' + s.subtitulo + '</p>' +
+                '<a href="' + s.link + '">' +
+                    '<button class="btn-primary">' + s.btn + '</button>' +
+                '</a>' +
+            '</div>';
+        slidesEl.appendChild(slide);
+
+        // --- Ponto de navegação ---
+        const dot = document.createElement('div');
+        dot.className = 'hero-dot' + (i === 0 ? ' active' : '');
+        dot.addEventListener('click', function() { goTo(i); });
+        dotsEl.appendChild(dot);
+    });
+
+    function goTo(n) {
+        current = (n + slides.length) % slides.length;
+        slidesEl.style.transform = 'translateX(-' + (current * 100) + '%)';
+        document.querySelectorAll('.hero-dot').forEach(function(d, i) {
+            d.classList.toggle('active', i === current);
+        });
+        resetTimer();
+    }
+
+    function resetTimer() {
+        clearInterval(timer);
+        timer = setInterval(function() { goTo(current + 1); }, 5000); // troca a cada 5s
+    }
+
+    document.getElementById('prevBtn').addEventListener('click', function() { goTo(current - 1); });
+    document.getElementById('nextBtn').addEventListener('click', function() { goTo(current + 1); });
+
+    resetTimer();
+})();
+
+
+// ============================
+// ITENS EM DESTAQUE
+// ============================
+
+const gridItens = document.getElementById('itensDestaque');
+
+async function carregarItens() {
+    const res = await fetch('https://pokeapi.co/api/v2/item?limit=8');
+    const data = await res.json();
+
+    const detalhes = await Promise.all(
+        data.results.map(i => fetch(i.url).then(r => r.json()))
+    );
+
+    const cores = ['#fff3f0','#eef6ff','#f0fff4','#fff9e6','#f5eeff'];
+
+    detalhes.forEach(item => {
+        const bg = cores[Math.floor(Math.random() * cores.length)];
+
+        const card = document.createElement('div');
+        card.className = 'card-destaque';
+
+        card.innerHTML = `
+            <div class="img-wrap" style="background:${bg}">
+                <span class="type-badge item">Item</span>
+                <button class="btn-fav" onclick="this.classList.toggle('active')">
+                    <span class="material-symbols-outlined">
+                        add_shopping_cart
+                    </span>
+                </button>
+                <img src="${item.sprites.default}" alt="${item.name}">
+            </div>
+            <div class="card-info">
+                <div class="nome">${item.name.replace(/-/g, ' ')}</div>
+                <div class="preco">R$ ${(Math.random() * 50 + 10).toFixed(2)}</div>
+            </div>
+        `;
+
+        gridItens.appendChild(card);
+    });
+}
+
+carregarItens();
 </script>
 
 {% endblock %}

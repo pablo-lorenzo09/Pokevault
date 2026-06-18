@@ -218,3 +218,8 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+model/__pycache__/usuario.cpython-313.pyc
+model/__pycache__/usuario.cpython-313.pyc
+model/__pycache__/tipos.cpython-313.pyc
+model/__pycache__/pokemons_select.cpython-313.pyc
+database/__pycache__/conexao.cpython-313.pyc
