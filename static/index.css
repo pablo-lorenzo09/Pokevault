@@ -97,6 +97,14 @@ main {
   margin-top: 1.5rem;
 }
 
+.destaque-header_len {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.25rem;
+  margin-top: 100px;
+}
+
 .destaque-header h2 {
   font-family: 'Fredoka', sans-serif;
   font-size: 1.5rem;

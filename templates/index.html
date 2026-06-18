@@ -54,12 +54,58 @@
                 {% endfor %}
             </div>
 
-            <div class="destaque-header">
-                <h2>Itens e Pokebolas em Destaque</h2>
-                <button class="ver-todos">Ver todos →</button>
+            <div class="destaque-header_len">
+                <h2>Pokemon Lendários em Destaque</h2>
+                <a href="/catalogo/1"><button class="ver-todos">Ver todos →</button></a>
             </div>
 
-            <div class="destaque-grid" id="itensDestaque"></div>
+            <div class="destaque-grid" id="pokemonDestaque">
+                {% for pokemon in destaques_len: %}
+            
+                <div class="card-destaque">
+                    <div class="img-wrap" style="background:var(--{{pokemon.type1}})">
+                        <span class="type-badge" style="background:var(--badge-{{pokemon.type1}})">{{pokemon.type1}}</span>
+                        <button class="btn-fav">
+                            <span class="material-symbols-outlined">shopping_cart</span>
+                        </button>
+                        <a href="/unitario/{{pokemon.id}}">
+                        <img src="{{pokemon.image}}" alt="{{pokemon.name}}">
+                    </div>
+                    <div class="card-info">
+                        <div class="nome">{{pokemon.name}}</div>
+                        <div class="tipo-texto">{{pokemon.type1}}{% if pokemon.type2 == none :%}{% else %}/{{pokemon.type2}}{% endif %}</div>
+                    </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="destaque-header_len">
+                <h2>Pokemon Lendários em Destaque</h2>
+                <a href="/catalogo/1"><button class="ver-todos">Ver todos →</button></a>
+            </div>
+
+            <div class="destaque-grid" id="pokemonDestaque">
+                {% for pokemon in destaques_len: %}
+            
+                <div class="card-destaque">
+                    <div class="img-wrap" style="background:var(--{{pokemon.type1}})">
+                        <span class="type-badge" style="background:var(--badge-{{pokemon.type1}})">{{pokemon.type1}}</span>
+                        <button class="btn-fav">
+                            <span class="material-symbols-outlined">favorite</span>
+
+                        </button>
+                        <a href="/unitario/{{pokemon.id}}">
+                        <img src="{{pokemon.image}}" alt="{{pokemon.name}}">
+                    </div>
+                    <div class="card-info">
+                        <div class="nome">{{pokemon.name}}</div>
+                        <div class="tipo-texto">{{pokemon.type1}}{% if pokemon.type2 == none :%}{% else %}/{{pokemon.type2}}{% endif %}</div>
+                    </div>
+                    </a>
+                </div>
+                {% endfor %}
+            </div>
 
         </section>
 
@@ -68,49 +114,7 @@
 <script>
 
 
-// ============================
-// ITENS EM DESTAQUE
-// ============================
 
-const gridItens = document.getElementById('itensDestaque');
-
-async function carregarItens() {
-    const res = await fetch('https://pokeapi.co/api/v2/item?limit=8');
-    const data = await res.json();
-
-    const detalhes = await Promise.all(
-        data.results.map(i => fetch(i.url).then(r => r.json()))
-    );
-
-    const cores = ['#fff3f0','#eef6ff','#f0fff4','#fff9e6','#f5eeff'];
-
-    detalhes.forEach(item => {
-        const bg = cores[Math.floor(Math.random() * cores.length)];
-
-        const card = document.createElement('div');
-        card.className = 'card-destaque';
-
-        card.innerHTML = `
-            <div class="img-wrap" style="background:${bg}">
-                <span class="type-badge item">Item</span>
-                <button class="btn-fav" onclick="this.classList.toggle('active')">
-                    <span class="material-symbols-outlined">
-                        add_shopping_cart
-                    </span>
-                </button>
-                <img src="${item.sprites.default}" alt="${item.name}">
-            </div>
-            <div class="card-info">
-                <div class="nome">${item.name.replace(/-/g, ' ')}</div>
-                <div class="preco">R$ ${(Math.random() * 50 + 10).toFixed(2)}</div>
-            </div>
-        `;
-
-        gridItens.appendChild(card);
-    });
-}
-
-carregarItens();
 </script>
 
 {% endblock %}
