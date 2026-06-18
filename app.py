@@ -8,6 +8,9 @@ from model.pokemons_select import recuperar_pokemons_preco_max
 from model.tipos import recuperar_tipos
 from model.usuario import cadastrar
 from model.usuario import logar
+from model.comentarios import enviar_comentario_unitario
+from model.comentarios import obter_comentarios_unitario
+from model.comentarios import deletar_comentario_unitario
 # from models.itens import recuperar_produtos, recuperar_produtos_destaques,recuperar_produto
 # from models.pokemon import cadastrar_usuarios
 # from models.usuario import pegar_login
@@ -94,6 +97,32 @@ def pagina_unitario(id):
     pokemon = recuperar_pokemon_unitario(id)
     return render_template("unitario.html",pokemon = pokemon)
 
+@app.route("/unitario/<id>/comentarios/get", methods=['GET'])
+def unitario_get_comentarios(id):
+    comentarios = obter_comentarios_unitario(int(id))
+    return jsonify(comentarios), 200
+
+@app.route("/unitario/<id>/comentarios/post", methods=['POST'])
+def unitario_post_comentario(id):
+    if "usuario_logado" not in session:
+        return jsonify({'message': 'Não autorizado'}), 401
+
+    dados = request.get_json()
+    usuario = session["usuario_logado"]
+
+    enviar_comentario_unitario(
+        comentario=dados.get('comentario'),
+        id_pokemon=int(id),
+        nome_usuario=usuario['nome'],  # 
+        nota=dados.get('nota')
+    )
+    return jsonify({'message': 'Comentário enviado com sucesso'}), 200
+
+@app.route("/unitario/<id>/comentarios/delete", methods=['DELETE'])
+def unitario_delete_comentario(id):
+    dados = request.get_json()
+    deletar_comentario_unitario(int(dados.get('codigo')))
+    return jsonify({'message': 'Comentário deletado'}), 200
 
 
 

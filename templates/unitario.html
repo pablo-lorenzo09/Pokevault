@@ -58,8 +58,6 @@
 
 </main>
 
-
-
 <div class="reviews-container">
 
   <!-- Tabs -->
@@ -69,36 +67,8 @@
       </span>Avaliações</span>
   </div>
 
-  <!-- Comentário 1 -->
-  <div class="review">
-    <img src="https://images.icon-icons.com/851/PNG/512/Pokemon_Trainer_Boy_icon-icons.com_67516.png" class="avatar">
+  <div class="lista-comentarios">
 
-    <div class="review-content">
-      <div class="top">
-        <strong>Treinador Lucas</strong>
-        <span class="date">20/05/2024</span>
-      </div>
-
-      <div class="stars">★★★★★</div>
-
-      <p>Voltynx é simplesmente incrível! Super rápido, leal e seus ataques elétricos são poderosos demais!</p>
-    </div>
-  </div>
-
-  <!-- Comentário 2 -->
-  <div class="review">
-    <img src="https://images.icon-icons.com/851/PNG/512/Pokemon_Trainer_Boy_icon-icons.com_67516.png" class="avatar">
-
-    <div class="review-content">
-      <div class="top">
-        <strong>Mestre Elétrica</strong>
-        <span class="date">18/05/2024</span>
-      </div>
-
-      <div class="stars">★★★★★</div>
-
-      <p>Um dos melhores companheiros elétricos que já tive. Design lindo e habilidades balanceadas!</p>
-    </div>
   </div>
 
   <!-- Comentário 3 -->
@@ -108,7 +78,6 @@
     <div class="review-content">
       <div class="top">
         <strong>Nina Volt</strong>
-        <span class="date">15/05/2024</span>
       </div>
 
       <div class="stars">★★★★★</div>
@@ -116,6 +85,7 @@
       <p>Chegou rápido e em perfeito estado! Já virou meu parceiro inseparável nas batalhas.</p>
     </div>
   </div>
+
   <div class="avaliacao-form">
     <div class="avatar">
       <img src="https://images.icon-icons.com/851/PNG/512/Pokemon_Trainer_Boy_icon-icons.com_67516.png" alt="avatar">
@@ -126,11 +96,11 @@
 
       <!-- Estrelas -->
       <div class="stars">
-        <input type="radio" name="star" id="star5"><label for="star5">★</label>
-        <input type="radio" name="star" id="star4"><label for="star4">★</label>
-        <input type="radio" name="star" id="star3"><label for="star3">★</label>
-        <input type="radio" name="star" id="star2"><label for="star2">★</label>
-        <input type="radio" name="star" id="star1"><label for="star1">★</label>
+        <input type="radio" name="star" id="star5" value="5"><label for="star5">★</label>
+        <input type="radio" name="star" id="star4" value="4"><label for="star4">★</label>
+        <input type="radio" name="star" id="star3" value="3"><label for="star3">★</label>
+        <input type="radio" name="star" id="star2" value="2"><label for="star2">★</label>
+        <input type="radio" name="star" id="star1" value="1"><label for="star1">★</label>
       </div>
 
       <!-- Comentário -->
@@ -142,4 +112,6 @@
 
 
 </div>
+<script src="/static/script/comentarios.js"></script>
+
 {% endblock %}
