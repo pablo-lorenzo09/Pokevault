@@ -155,6 +155,10 @@ def pag_carrinho_post(id):
     adicionar_pokemon_carrinho(id,session['usuario_logado']["id_usuario"])
     return redirect("/inicio")
 
+@app.route("/sobre-nos")
+def pagina_sobre_nos():
+    return render_template("sobre-nos.html")
+
 # @app.route("/api/get/carrinho", methods = ["GET"])
 # def api_get_carrinho():
 #     if "usuario_logado" in session:

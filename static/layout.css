@@ -292,7 +292,7 @@ body {
 
 /* Cabeçalho do carrinho - TAMANHO FIXO */
 .cart__header {
-  background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+  background: url("/static/img/background-header.png") center/cover no-repeat;
   padding: 20px 25px;
   display: flex;
   justify-content: space-between;
