@@ -6,6 +6,7 @@ from model.pokemons_select import recuperar_pokemons_destaques_lendarios
 from model.pokemons_select import recuperar_tipos
 from model.pokemons_select import recuperar_pokemons_preco_min
 from model.pokemons_select import recuperar_pokemons_preco_max
+from model.pokemons_select import recuperar_pokemons_filtro
 from model.tipos import recuperar_tipos
 from model.usuario import cadastrar
 from model.usuario import logar
@@ -76,27 +77,35 @@ def tela_cadastro_post():
 
     return redirect("/login")
 
-@app.route("/catalogo/<pag>")
+@app.route("/catalogo/<pag>", methods=["GET", "POST"])
 def pagina_catalogo(pag=0):
-    tipos_filtro = request.args.getlist("tipo")
-    ordem = request.args.get("ordem")
 
-    if ordem == "asc":
-        pokemons = recuperar_pokemons_preco_min(pag=pag, tipos=tipos_filtro)
-    elif ordem == "desc":
-        pokemons = recuperar_pokemons_preco_max(pag=pag, tipos=tipos_filtro)
-    else:
-        pokemons = recuperar_pokemons(pag=pag, tipos=tipos_filtro)
+        tipos_filtro = request.args.getlist("tipo")
+        ordem = request.args.get("ordem")
+        if request.method == "GET":
+            if ordem == "asc":
+                pokemons = recuperar_pokemons_preco_min(pag=pag, tipos=tipos_filtro)
+            elif ordem == "desc":
+                pokemons = recuperar_pokemons_preco_max(pag=pag, tipos=tipos_filtro)
+            else:
+                pokemons = recuperar_pokemons(pag=pag, tipos=tipos_filtro)
+        else:
+            tipos_filtro = request.args.getlist("tipo")
+            search=request.form.get("search")
+            pokemons=recuperar_pokemons_filtro(search=search+'%',tipos=tipos_filtro)
 
-    tipos = recuperar_tipos()
-    return render_template(
-        "catalogo.html",
-        pokemons=pokemons,
-        tipos=tipos,
-        tipos_selecionados=tipos_filtro,
-        ordem_selecionada=ordem,
-        pag=pag
-    )
+        tipos = recuperar_tipos()
+        return render_template(
+            "catalogo.html",
+            pokemons=pokemons,
+            tipos=tipos,
+            tipos_selecionados=tipos_filtro,
+            ordem_selecionada=ordem,
+            pag=pag
+        )
+
+
+
 @app.route("/unitario/<id>")
 def pagina_unitario(id):
     pokemon = recuperar_pokemon_unitario(id)
@@ -153,7 +162,10 @@ def pag_carrinho():
 
 @app.route("/carrinho/post/<int:id>")
 def pag_carrinho_post(id):
-    adicionar_pokemon_carrinho(id,session['usuario_logado']["id_usuario"])
+    if 'usuario_logado' in session:
+        adicionar_pokemon_carrinho(id,session['usuario_logado']["id_usuario"])
+    else:
+        pass
     pagina_anterior = request.referrer or "/inicio"
     
     return redirect(pagina_anterior)
@@ -164,6 +176,15 @@ def pag_carrinho_delete(id):
     pagina_anterior = request.referrer or "/inicio"
     
     return redirect(pagina_anterior)
+
+@app.route('/search',methods=["POST"])
+def search():
+    tipos_filtro = request.args.getlist("tipo")
+    search=request.form.get("search")
+    pokemons=recuperar_pokemons_filtro(search=search+'%',tipos=tipos_filtro)
+    return redirect("/catalogo/1",pokemons=pokemons)
+
+
 
 
 @app.route("/sobre-nos")

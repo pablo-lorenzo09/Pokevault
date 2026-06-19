@@ -98,12 +98,14 @@
     </div>
  
     <div class="toolbar">
-      <div class="search-box">
-        <input type="text" placeholder="Buscar criatura...">
-        <button>
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        </button>
-      </div>
+      <form action="/catalogo/1" method="post">
+        <div class="search-box">
+          <input name="search" type="text" placeholder="Buscar criatura...">
+            <button type="submit">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            </button>
+        </div>
+      </form>
 
     </div>
  
@@ -111,32 +113,32 @@
     <div class="card-grid" id="cardGrid">
       {% for pokemon in pokemons: %}
       <div class="card">
-        <div class="card-img-wrap" style="background: var(--{{pokemon.type1}})">
-            <a href="/unitario/{{pokemon.id}}">
-                <img src="{{pokemon.image}}" alt="{{pokemon.name}}">
-            </a>
-            
-            <span class="card-badge" style="background: var(--badge-{{pokemon.type1}})">{{pokemon.type1}}</span>
-            
-            <a href="/carrinho/post/{{pokemon.id}}">
-                <button class="card-fav" title="Adicionar ao carrinho">
-                    <span class="material-symbols-outlined">shopping_cart</span>
-                </button>
-            </a>
-        </div>
-        
-        <a href="/unitario/{{pokemon.id}}" style="text-decoration: none; color: inherit;">
-            <div class="card-body">
-                <div class="teste">
-                    <div class="card-name">{{pokemon.name}}</div>
-                    <div class="card-tipos">
-                        {{pokemon.type1}}{% if pokemon.type2 %}/{{pokemon.type2}}{% endif %}
-                    </div>
-                </div>
-                <div class="card-price">R${{pokemon.price}}</div>
-            </div>
-        </a>
-    </div>
+          <div class="card-img-wrap" style="background: var(--{{pokemon.type1}})">
+              <a href="/unitario/{{pokemon.id}}">
+                  <img src="{{pokemon.image}}" alt="{{pokemon.name}}">
+              </a>
+              
+              <span class="card-badge" style="background: var(--badge-{{pokemon.type1}})">{{pokemon.type1}}</span>
+              
+              <a href="/carrinho/post/{{pokemon.id}}">
+                  <button class="card-fav" title="Adicionar ao carrinho">
+                      <span class="material-symbols-outlined">shopping_cart</span>
+                  </button>
+              </a>
+          </div>
+          
+          <a href="/unitario/{{pokemon.id}}" style="text-decoration: none; color: inherit;">
+              <div class="card-body">
+                  <div class="teste">
+                      <div class="card-name">{{pokemon.name}}</div>
+                      <div class="card-tipos">
+                          {{pokemon.type1}}{% if pokemon.type2 %}/{{pokemon.type2}}{% endif %}
+                      </div>
+                  </div>
+                  <div class="card-price">R${{pokemon.price}}</div>
+              </div>
+          </a>
+      </div>
       {% endfor %}
     </div>
  
