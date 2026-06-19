@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>PokeVault — Novidades</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;700;800&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+
+<style>
+/* ===========================================================
+   PokeVault — estilos da página Novidades (index.html)
+   =========================================================== */
+
+:root {
+  --red: #E0473C;
+  --red-dark: #C73A30;
+  --cream: #F0EDE6;
+  --cream-card: #FAF8F4;
+  --ink: #2A2522;
+  --ink-soft: #5C5550;
+  --gold: #F4C430;
+  --line: #E3DED5;
+  --shadow: 0 4px 14px rgba(42, 37, 34, 0.08);
+  --shadow-lg: 0 10px 30px rgba(42, 37, 34, 0.14);
+  --radius: 14px;
+  --font-display: "Baloo 2", "Fredoka", system-ui, sans-serif;
+  --font-body: "Nunito", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background-color: var(--cream);
+  background-image:
+    radial-gradient(circle at 8% 18%, rgba(224,71,60,0.06) 0 70px, transparent 71px),
+    radial-gradient(circle at 92% 12%, rgba(224,71,60,0.06) 0 70px, transparent 71px),
+    radial-gradient(circle at 50% 90%, rgba(224,71,60,0.06) 0 70px, transparent 71px),
+    radial-gradient(circle at 22% 70%, rgba(224,71,60,0.05) 0 60px, transparent 61px),
+    radial-gradient(circle at 80% 65%, rgba(224,71,60,0.05) 0 60px, transparent 61px);
+  background-attachment: fixed;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { font-family: inherit; cursor: pointer; }
+
+/* ---------- Top bar ---------- */
+.topbar {
+  background: linear-gradient(180deg, var(--red) 0%, var(--red-dark) 100%);
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  position: relative;
+  z-index: 10;
+}
+
+.btn-login {
+  background: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: var(--shadow);
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.9rem;
+  letter-spacing: 0.5px;
+  color: #fff;
+  -webkit-text-stroke: 1.5px var(--ink);
+  text-shadow: 3px 3px 0 var(--ink);
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+.brand .accent { color: var(--gold); -webkit-text-stroke: 1.5px var(--ink); }
+
+.pokeball-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background:
+    linear-gradient(var(--ink), var(--ink)) center / 100% 3px no-repeat,
+    linear-gradient(to bottom, var(--red) 0 49%, #fff 51% 100%);
+  border: 3px solid var(--ink);
+  position: relative;
+}
+.pokeball-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 13px; height: 13px;
+  background: #fff;
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ---------- Nav ---------- */
+.navbar {
+  background: var(--cream-card);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: center;
+}
+.navbar nav {
+  display: flex;
+  gap: 36px;
+  padding: 14px 0;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.navbar a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ink-soft);
+  padding-bottom: 4px;
+  border-bottom: 3px solid transparent;
+  transition: color .15s ease, border-color .15s ease;
+}
+.navbar a:hover { color: var(--red); }
+.navbar a.active {
+  color: var(--red);
+  border-bottom-color: var(--red);
+}
+
+/* ---------- Cart icon (header) ---------- */
+.cart-link {
+  display: flex;
+  align-items: center;
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  max-width: 1100px;
+  margin: 32px auto 0;
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+  background:
+    radial-gradient(circle at 50% 18%, rgba(244,196,48,0.5), transparent 38%),
+    linear-gradient(160deg, #1b1340 0%, #2a1a5e 35%, #1d2a6b 65%, #11163a 100%);
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, #fff, transparent),
+    radial-gradient(2px 2px at 70% 60%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 40% 80%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 85% 25%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 60% 15%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 10% 70%, #fff, transparent);
+  opacity: 0.7;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 48px 56px;
+  max-width: 480px;
+  color: #fff;
+}
+.hero-content h1 {
+  font-family: var(--font-display);
+  font-size: 2.3rem;
+  line-height: 1.15;
+  margin: 0 0 14px;
+}
+.hero-content p {
+  font-size: 1rem;
+  line-height: 1.5;
+  opacity: 0.9;
+  margin: 0;
+}
+.hero-emblem {
+  position: absolute;
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244,196,48,0.35), transparent 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-emblem .ball {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background:
+    linear-gradient(var(--ink), var(--ink)) center / 100% 6px no-repeat,
+    linear-gradient(to bottom, var(--red) 0 48%, #fff 52% 100%);
+  border: 5px solid var(--ink);
+  box-shadow: 0 0 40px rgba(244,196,48,0.6), var(--shadow-lg);
+  position: relative;
+}
+.hero-emblem .ball::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 34px; height: 34px;
+  background: #fff;
+  border: 6px solid var(--ink);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ---------- Sections ---------- */
+.section {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 18px;
+}
+.section-head h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin: 0;
+}
+.see-all {
+  color: var(--red);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* ---------- Product grid ---------- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.card {
+  background: var(--cream-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+.card-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-media .cart-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  font-size: 0.9rem;
+}
+.media-1 { background: radial-gradient(circle at 35% 30%, #6a5acd, #2c2455 75%); }
+.media-2 { background: radial-gradient(circle at 50% 50%, #d6429a, #7a1f63 75%); }
+.media-3 { background: radial-gradient(circle at 50% 30%, #ff9d4d, #c1431f 75%); }
+
+.shape {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+}
+.shape-ball {
+  background: linear-gradient(to bottom, #fff 0 48%, var(--ink) 48% 52%, #d6429a 52% 100%);
+  border: 4px solid var(--ink);
+  position: relative;
+}
+.shape-ball::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 20px; height: 20px;
+  background: #d6429a;
+  border: 4px solid var(--ink);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.shape-bolt {
+  width: 0; height: 0;
+  border: none;
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  color: var(--gold);
+  text-shadow: 0 0 14px rgba(244,196,48,0.7);
+}
+.shape-card {
+  width: 70px; height: 96px;
+  background: linear-gradient(160deg, #ff8a3d, #c1431f);
+  border: 3px solid #fff;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.card-body {
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.card-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+.card-title-row h3 {
+  font-size: 1rem;
+  margin: 0;
+}
+.price {
+  font-weight: 800;
+  color: var(--red);
+  white-space: nowrap;
+  font-size: 0.95rem;
+}
+.card-sub {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  font-weight: 700;
+  margin: 0;
+}
+.card-desc {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  margin: 2px 0 10px;
+  line-height: 1.4;
+}
+.btn-outline {
+  border: 1.5px solid var(--red);
+  color: var(--red);
+  background: transparent;
+  border-radius: 999px;
+  padding: 8px 0;
+  font-weight: 700;
+  font-size: 0.85rem;
+  width: 100%;
+  transition: background .15s ease, color .15s ease;
+}
+.btn-outline:hover {
+  background: var(--red);
+  color: #fff;
+}
+
+/* ---------- News strip ---------- */
+.news-strip {
+  max-width: 1100px;
+  margin: 0 auto 50px;
+  padding: 0 16px;
+}
+.news-card {
+  background: var(--cream-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  gap: 18px;
+  padding: 16px;
+  align-items: center;
+}
+.news-thumb {
+  width: 96px;
+  height: 72px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #ffb454, #e0473c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.6rem;
+}
+.news-card h3 {
+  margin: 0 0 4px;
+  font-size: 1rem;
+}
+.news-card p {
+  margin: 0 0 8px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+.news-card a {
+  color: var(--red);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 860px) {
+  .product-grid { grid-template-columns: 1fr; }
+  .hero-emblem { display: none; }
+  .hero-content { padding: 36px 28px; max-width: 100%; }
+  .navbar nav { gap: 18px; flex-wrap: wrap; padding: 12px 10px; }
+}
+</style>
+</head>
+<body>
+
+  <!-- Topbar -->
+  <header class="topbar">
+    <button class="btn-login">👤 Entrar</button>
+    <div class="brand"><span class="pokeball-icon" style="margin-right:8px"></span>Poke<span class="accent">Vault</span></div>
+    <a href="#" class="cart-link" aria-label="Carrinho">
+      <span class="pokeball-icon"></span>
+    </a>
+  </header>
+
+  <!-- Nav -->
+  <div class="navbar">
+    <nav>
+      <a href="index.html">🏠 Início</a>
+      <a href="#">Menu ▾</a>
+      <a href="#" class="active">Novidades</a>
+      <a href="#">Sobre nós</a>
+      <a href="contato.html">Contato</a>
+      <a href="#">🛒</a>
+    </nav>
+  </div>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="hero-content">
+      <h1>Uma Coleção de Poder Lendário!</h1>
+      <p>Conheça o verdadeiro poder da PokeVault</p>
+    </div>
+    <div class="hero-emblem"><div class="ball"></div></div>
+  </section>
+
+  <!-- Produtos em destaque -->
+  <section class="section">
+    <div class="section-head">
+      <h2>Novos Produtos em Destaque</h2>
+      <a href="#" class="see-all">Ver tudo ›</a>
+    </div>
+
+    <div class="product-grid">
+
+      <article class="card">
+        <div class="card-media media-1">
+          <div class="shape-bolt">⚡</div>
+          <span class="cart-badge">🛒</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title-row">
+            <h3>Neva Pelúcia Limitada</h3>
+            <span class="price">R$ 4,99</span>
+          </div>
+          <p class="card-sub">Miradon</p>
+          <p class="card-desc">Nova Pelúcia Legendária para sua coleção.</p>
+          <button class="btn-outline">Saiba mais</button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media media-2">
+          <div class="shape-ball"></div>
+          <span class="cart-badge">🛒</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title-row">
+            <h3>Réplica Colecionável</h3>
+            <span class="price">R$ 5,99</span>
+          </div>
+          <p class="card-sub">Réplica Colecionável</p>
+          <p class="card-desc">Réplica Colecionável. Traga um Pokémon para casa.</p>
+          <button class="btn-outline">Saiba mais</button>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-media media-3">
+          <div class="shape-card"></div>
+          <span class="cart-badge">🛒</span>
+        </div>
+        <div class="card-body">
+          <div class="card-title-row">
+            <h3>Pôster de Arte Exclusivo</h3>
+            <span class="price">R$ 9,99</span>
+          </div>
+          <p class="card-sub">Shiny Chartzard</p>
+          <p class="card-desc">Pôster de Arte Exclusivo com acabamento premium.</p>
+          <button class="btn-outline">Saiba mais</button>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- Notícia / próxima coleção -->
+  <section class="news-strip">
+    <div class="news-card">
+      <div class="news-thumb">📦</div>
+      <div>
+        <h3>Próxima Coleção de Cartas</h3>
+        <p>A nova Coleção de Cartas está chegando, com novidades incríveis para os colecionadores. Fique de olho nas novidades.</p>
+        <a href="#">Ler artigo completo (Brevemente)</a>
+      </div>
+    </div>
+  </section>
+
+</body>
+</html>

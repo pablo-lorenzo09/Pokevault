@@ -1,0 +1,571 @@
+/* ===========================================================
+   PokeVault — folha de estilos compartilhada
+   =========================================================== */
+
+:root {
+  --red: #E0473C;
+  --red-dark: #C73A30;
+  --cream: #F0EDE6;
+  --cream-card: #FAF8F4;
+  --ink: #2A2522;
+  --ink-soft: #5C5550;
+  --gold: #F4C430;
+  --line: #E3DED5;
+  --shadow: 0 4px 14px rgba(42, 37, 34, 0.08);
+  --shadow-lg: 0 10px 30px rgba(42, 37, 34, 0.14);
+  --radius: 14px;
+  --font-display: "Baloo 2", "Fredoka", system-ui, sans-serif;
+  --font-body: "Nunito", system-ui, sans-serif;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  color: var(--ink);
+  background-color: var(--cream);
+  background-image:
+    radial-gradient(circle at 8% 18%, rgba(224,71,60,0.06) 0 70px, transparent 71px),
+    radial-gradient(circle at 92% 12%, rgba(224,71,60,0.06) 0 70px, transparent 71px),
+    radial-gradient(circle at 50% 90%, rgba(224,71,60,0.06) 0 70px, transparent 71px),
+    radial-gradient(circle at 22% 70%, rgba(224,71,60,0.05) 0 60px, transparent 61px),
+    radial-gradient(circle at 80% 65%, rgba(224,71,60,0.05) 0 60px, transparent 61px);
+  background-attachment: fixed;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+button { font-family: inherit; cursor: pointer; }
+
+/* ---------- Top bar ---------- */
+.topbar {
+  background: linear-gradient(180deg, var(--red) 0%, var(--red-dark) 100%);
+  padding: 14px 28px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.15);
+  position: relative;
+  z-index: 10;
+}
+
+.btn-login {
+  background: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: var(--ink);
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  box-shadow: var(--shadow);
+}
+
+.brand {
+  font-family: var(--font-display);
+  font-weight: 800;
+  font-size: 1.9rem;
+  letter-spacing: 0.5px;
+  color: #fff;
+  -webkit-text-stroke: 1.5px var(--ink);
+  text-shadow: 3px 3px 0 var(--ink);
+  display: flex;
+  align-items: baseline;
+  gap: 2px;
+}
+.brand .accent { color: var(--gold); -webkit-text-stroke: 1.5px var(--ink); }
+
+.pokeball-icon {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background:
+    linear-gradient(var(--ink), var(--ink)) center / 100% 3px no-repeat,
+    linear-gradient(to bottom, var(--red) 0 49%, #fff 51% 100%);
+  border: 3px solid var(--ink);
+  position: relative;
+}
+.pokeball-icon::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 13px; height: 13px;
+  background: #fff;
+  border: 3px solid var(--ink);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ---------- Nav ---------- */
+.navbar {
+  background: var(--cream-card);
+  border-bottom: 1px solid var(--line);
+  display: flex;
+  justify-content: center;
+}
+.navbar nav {
+  display: flex;
+  gap: 36px;
+  padding: 14px 0;
+  font-weight: 700;
+  font-size: 0.95rem;
+}
+.navbar a {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--ink-soft);
+  padding-bottom: 4px;
+  border-bottom: 3px solid transparent;
+  transition: color .15s ease, border-color .15s ease;
+}
+.navbar a:hover { color: var(--red); }
+.navbar a.active {
+  color: var(--red);
+  border-bottom-color: var(--red);
+}
+
+/* ---------- Hero ---------- */
+.hero {
+  max-width: 1100px;
+  margin: 32px auto 0;
+  border-radius: 18px;
+  overflow: hidden;
+  position: relative;
+  box-shadow: var(--shadow-lg);
+  background:
+    radial-gradient(circle at 50% 18%, rgba(244,196,48,0.5), transparent 38%),
+    linear-gradient(160deg, #1b1340 0%, #2a1a5e 35%, #1d2a6b 65%, #11163a 100%);
+  min-height: 320px;
+  display: flex;
+  align-items: center;
+}
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, #fff, transparent),
+    radial-gradient(2px 2px at 70% 60%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 40% 80%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 85% 25%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 60% 15%, #fff, transparent),
+    radial-gradient(1.5px 1.5px at 10% 70%, #fff, transparent);
+  opacity: 0.7;
+}
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 48px 56px;
+  max-width: 480px;
+  color: #fff;
+}
+.hero-content h1 {
+  font-family: var(--font-display);
+  font-size: 2.3rem;
+  line-height: 1.15;
+  margin: 0 0 14px;
+}
+.hero-content p {
+  font-size: 1rem;
+  line-height: 1.5;
+  opacity: 0.9;
+  margin: 0;
+}
+.hero-emblem {
+  position: absolute;
+  right: 60px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+  width: 220px;
+  height: 220px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(244,196,48,0.35), transparent 70%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.hero-emblem .ball {
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background:
+    linear-gradient(var(--ink), var(--ink)) center / 100% 6px no-repeat,
+    linear-gradient(to bottom, var(--red) 0 48%, #fff 52% 100%);
+  border: 5px solid var(--ink);
+  box-shadow: 0 0 40px rgba(244,196,48,0.6), var(--shadow-lg);
+  position: relative;
+}
+.hero-emblem .ball::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 34px; height: 34px;
+  background: #fff;
+  border: 6px solid var(--ink);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+
+/* ---------- Sections ---------- */
+.section {
+  max-width: 1100px;
+  margin: 40px auto;
+  padding: 0 16px;
+}
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 18px;
+}
+.section-head h2 {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  margin: 0;
+}
+.see-all {
+  color: var(--red);
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+/* ---------- Product grid ---------- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 22px;
+}
+.card {
+  background: var(--cream-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  display: flex;
+  flex-direction: column;
+  transition: transform .18s ease, box-shadow .18s ease;
+}
+.card:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-lg);
+}
+.card-media {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.card-media .cart-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.92);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow);
+  font-size: 0.9rem;
+}
+.media-1 { background: radial-gradient(circle at 35% 30%, #6a5acd, #2c2455 75%); }
+.media-2 { background: radial-gradient(circle at 50% 50%, #d6429a, #7a1f63 75%); }
+.media-3 { background: radial-gradient(circle at 50% 30%, #ff9d4d, #c1431f 75%); }
+
+.shape {
+  width: 64px; height: 64px;
+  border-radius: 50%;
+}
+.shape-ball {
+  background: linear-gradient(to bottom, #fff 0 48%, var(--ink) 48% 52%, #d6429a 52% 100%);
+  border: 4px solid var(--ink);
+  position: relative;
+}
+.shape-ball::after {
+  content: "";
+  position: absolute;
+  top: 50%; left: 50%;
+  width: 20px; height: 20px;
+  background: #d6429a;
+  border: 4px solid var(--ink);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+}
+.shape-bolt {
+  width: 0; height: 0;
+  border: none;
+  font-family: var(--font-display);
+  font-size: 2.6rem;
+  color: var(--gold);
+  text-shadow: 0 0 14px rgba(244,196,48,0.7);
+}
+.shape-card {
+  width: 70px; height: 96px;
+  background: linear-gradient(160deg, #ff8a3d, #c1431f);
+  border: 3px solid #fff;
+  border-radius: 8px;
+  box-shadow: var(--shadow);
+}
+
+.card-body {
+  padding: 14px 16px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.card-title-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 8px;
+}
+.card-title-row h3 {
+  font-size: 1rem;
+  margin: 0;
+}
+.price {
+  font-weight: 800;
+  color: var(--red);
+  white-space: nowrap;
+  font-size: 0.95rem;
+}
+.card-sub {
+  font-size: 0.78rem;
+  color: var(--ink-soft);
+  font-weight: 700;
+  margin: 0;
+}
+.card-desc {
+  font-size: 0.82rem;
+  color: var(--ink-soft);
+  margin: 2px 0 10px;
+  line-height: 1.4;
+}
+.btn-outline {
+  border: 1.5px solid var(--red);
+  color: var(--red);
+  background: transparent;
+  border-radius: 999px;
+  padding: 8px 0;
+  font-weight: 700;
+  font-size: 0.85rem;
+  width: 100%;
+  transition: background .15s ease, color .15s ease;
+}
+.btn-outline:hover {
+  background: var(--red);
+  color: #fff;
+}
+
+/* ---------- News strip ---------- */
+.news-strip {
+  max-width: 1100px;
+  margin: 0 auto 50px;
+  padding: 0 16px;
+}
+.news-card {
+  background: var(--cream-card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  display: flex;
+  gap: 18px;
+  padding: 16px;
+  align-items: center;
+}
+.news-thumb {
+  width: 96px;
+  height: 72px;
+  border-radius: 10px;
+  flex-shrink: 0;
+  background: linear-gradient(135deg, #ffb454, #e0473c);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-size: 1.6rem;
+}
+.news-card h3 {
+  margin: 0 0 4px;
+  font-size: 1rem;
+}
+.news-card p {
+  margin: 0 0 8px;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  line-height: 1.45;
+}
+.news-card a {
+  color: var(--red);
+  font-weight: 700;
+  font-size: 0.85rem;
+}
+
+/* ---------- Contact page ---------- */
+.contact-wrap {
+  max-width: 1100px;
+  margin: 36px auto 0;
+  padding: 0 16px;
+}
+.contact-panel {
+  background: var(--cream-card);
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: var(--shadow-lg);
+  padding: 36px 40px 30px;
+}
+.contact-panel > h1 {
+  font-family: var(--font-display);
+  font-size: 1.7rem;
+  margin: 0 0 22px;
+  text-align: left;
+}
+.contact-grid {
+  display: grid;
+  grid-template-columns: 1.15fr 1fr;
+  gap: 30px;
+  align-items: start;
+}
+.contact-illustration {
+  border-radius: 14px;
+  overflow: hidden;
+  aspect-ratio: 16 / 10;
+  background: linear-gradient(160deg, #3a2a6b, #1c1440 70%);
+  position: relative;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  box-shadow: var(--shadow);
+}
+.contact-illustration::before {
+  content: "PokéVault Support";
+  position: absolute;
+  top: 18px; left: 50%;
+  transform: translateX(-50%);
+  background: #c98a4d;
+  color: #2a1a05;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 8px 18px;
+  border-radius: 6px;
+  border: 2px solid #8a5a28;
+  box-shadow: var(--shadow);
+}
+.contact-illustration .desk {
+  width: 100%;
+  height: 38%;
+  background: linear-gradient(180deg, #8a5a2e, #6b4220);
+  border-top: 4px solid #5c3818;
+}
+
+.contact-info h2 {
+  font-family: var(--font-display);
+  font-size: 1.4rem;
+  margin: 0 0 16px;
+}
+.info-item {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 16px;
+}
+.info-icon {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--red);
+  color: #fff;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+}
+.info-item strong {
+  display: block;
+  font-size: 0.95rem;
+  margin-bottom: 2px;
+}
+.info-item span {
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  line-height: 1.4;
+}
+
+.contact-form {
+  margin-top: 18px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.contact-form input,
+.contact-form textarea {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-family: inherit;
+  font-size: 0.9rem;
+  background: #fff;
+}
+.contact-form textarea {
+  resize: vertical;
+  min-height: 70px;
+}
+.btn-send {
+  background: var(--red);
+  color: #fff;
+  border: none;
+  border-radius: 999px;
+  padding: 11px 0;
+  font-weight: 800;
+  font-size: 0.95rem;
+  box-shadow: var(--shadow);
+}
+.btn-send:hover { background: var(--red-dark); }
+
+.map-block {
+  margin-top: 14px;
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  position: relative;
+  aspect-ratio: 16 / 4;
+  background:
+    linear-gradient(160deg, #cfe3d6, #a9c7b3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.map-block span {
+  font-family: var(--font-display);
+  font-weight: 700;
+  color: var(--ink);
+  background: rgba(255,255,255,0.85);
+  padding: 6px 16px;
+  border-radius: 999px;
+  font-size: 0.85rem;
+}
+
+/* ---------- Footer cart icon shared ---------- */
+.cart-link {
+  display: flex;
+  align-items: center;
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 860px) {
+  .product-grid { grid-template-columns: 1fr; }
+  .contact-grid { grid-template-columns: 1fr; }
+  .hero-emblem { display: none; }
+  .hero-content { padding: 36px 28px; max-width: 100%; }
+  .navbar nav { gap: 18px; flex-wrap: wrap; padding: 12px 10px; }
+}
