@@ -50,8 +50,8 @@ A jornada de desenvolvimento foi:
 ```python
 flask, mysql-connector-python, requests, json
 
-📂 Estrutura do Projeto
-text
+### 📂 Estrutura do Projeto
+
 POKEVAULT/
 ├── app.py                      # Arquivo principal do Flask
 ├── requirements.txt            # Dependências do projeto
@@ -101,62 +101,81 @@ POKEVAULT/
     ├── requisicao_pokemons.py  # Script para requisição à PokeAPI
     ├── traducao_pokemons.py    # Script para tradução dos dados
     └── swap.txt                # Arquivo auxiliar (swap de dados)
+```
 
-🧪 Como Rodar o Projeto Localmente
-Pré-requisitos:
-Python 3.9+ instalado
+## 🧪 Como Rodar o Projeto Localmente
 
-MySQL Server 8.0+ instalado e rodando
+### 📋 Pré-requisitos
 
-Git (opcional, mas recomendado)
+Antes de começar, certifique-se de ter instalado em sua máquina:
 
-Passo a passo:
-1. Clone o repositório:
+- **Python 3.9+** — [Download aqui](https://www.python.org/downloads/)
+- **MySQL Server 8.0+** — [Download aqui](https://dev.mysql.com/downloads/mysql/)
+  - ⚠️ *Certifique-se de que o serviço MySQL esteja rodando antes de prosseguir*
+- **Git** (opcional, mas recomendado) — [Download aqui](https://git-scm.com/downloads)
 
-bash
+---
+
+### 🚀 Passo a Passo
+
+Siga os passos abaixo para rodar o projeto localmente:
+
+---
+
+#### 1️⃣ Clone o repositório
+
+
+```
 git clone https://github.com/seu-usuario/pokevault.git
 cd pokevault
-2. Crie e ative um ambiente virtual:
+```
+**2. Crie e ative um ambiente virtual:**
 
-bash
+```
 python -m venv venv
 source venv/bin/activate   # Linux/Mac
 # ou
 venv\Scripts\activate      # Windows
-3. Instale as dependências:
+```
+**3. Instale as dependências:**
 
-bash
+```
 pip install -r requirements.txt
-4. Configure o banco de dados MySQL:
+```
+**4. Configure o banco de dados MySQL:**
 
-Crie um banco de dados (ex: pokevault)
+> 💡 Crie um banco de dados (ex: pokevault)
 
-Execute o script SQL para criar as tabelas:
+> 📋 Execute o script SQL para criar as tabelas:
 
-bash
-mysql -u seu_usuario -p pokevault < migrate/diagrama_finalizado_pokevault.sql
-5. Popule o banco com os Pokémon:
+**5. Popule o banco com os Pokémon:**
 
-bash
+```
 python migrate/pokemons.py
-Este script irá inserir todos os 384 Pokémon no banco de dados.
+```
+> ⚡ Este script irá inserir todos os **384 Pokémon** no banco de dados.
 
-6. Execute a aplicação:
+**6. Execute a aplicação:**
 
-bash
+```
 python app.py
-7. Acesse no navegador:
+```
+**7. Acesse no navegador:**
 
-text
+
 http://localhost:5000
 
-🤝 Como Contribuir
-Faça um fork do projeto
 
-Crie uma branch para sua feature: git checkout -b minha-feature
+---
 
-Commit suas mudanças: git commit -m 'feat: adiciona filtro por tipo'
+## 🤝 Como Contribuir
 
-Push para a branch: git push origin minha-feature
+> 🍴 Faça um **fork** do projeto
 
-Abra um Pull Request
+> 🌿 Crie uma branch para sua feature: `git checkout -b minha-feature`
+
+> 💾 Commit suas mudanças: `git commit -m 'feat: adiciona filtro por tipo'`
+
+> 📤 Push para a branch: `git push origin minha-feature`
+
+> 🔀 Abra um **Pull Request**
